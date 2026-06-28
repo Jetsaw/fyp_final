@@ -16,8 +16,8 @@ from app.advisor.engine import (
 from app.agents.trace import Trace
 
 FALLBACK_ANSWER = (
-    "I can help with prerequisites and planning.\n"
-    "Try: “If I fail Math 1, can I take Math 2?” or “Plan Year 1 Sem 2”."
+    "Sorry, I could not find that in the Hive academic knowledge base. "
+    "Please rephrase your question, or ask FAIE staff for this item."
 )
 
 

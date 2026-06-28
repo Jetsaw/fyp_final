@@ -122,6 +122,8 @@ BYOC_FACT_WORDS = [
 BYOC_ADVICE_WORDS = ["choose", "recommend", "should", "pick", "like", "interest", "interested", "best"]
 BYOC_FOLLOWUP_WORDS = ["which one", "easier", "harder", "fits"]
 BYOC_PREFERENCE_REPLY_WORDS = ["like", "interest", "interested", "prefer", "want", "enjoy", "good at"]
+BYOC_EXPLAIN_WORDS = ["explain", "tell me more", "more info", "more information", "quick explanation"]
+BYOC_CHOOSE_WORDS = ["choose", "help me choose", "recommend", "pick", "guide me"]
 
 GLOBAL_INDEX = None
 GLOBAL_METAS = None
@@ -273,6 +275,22 @@ def _byoc_interests(question: str) -> list[str]:
     ]
 
 
+def _is_byoc_overview_request(text: str) -> bool:
+    has_byoc = "byoc" in text or "elective" in text
+    return has_byoc and _text_has_any(
+        text,
+        ["tell me byoc", "tell me about byoc", "what is byoc", "what does byoc", "byoc mean", "explain byoc"],
+    )
+
+
+def _wants_byoc_explanation(text: str) -> bool:
+    return _text_has_any(text, BYOC_EXPLAIN_WORDS) or _is_byoc_overview_request(text)
+
+
+def _wants_byoc_choice_help(text: str) -> bool:
+    return _text_has_any(text, BYOC_CHOOSE_WORDS)
+
+
 def _is_byoc_advice_turn(question: str, session) -> bool:
     text = question.lower()
     pending = session.metadata.get("task_state", {}).get("pending_flow") == "byoc"
@@ -281,18 +299,33 @@ def _is_byoc_advice_turn(question: str, session) -> bool:
         bool(_byoc_interests(question))
         or bool(_byoc_intake(question))
         or _text_has_any(text, BYOC_PREFERENCE_REPLY_WORDS)
+        or _wants_byoc_explanation(text)
+        or _wants_byoc_choice_help(text)
     )
     follows_byoc = has_byoc_preferences and _text_has_any(text, BYOC_FOLLOWUP_WORDS)
     mentions_byoc = "byoc" in text or "elective" in text
     asks_fact = mentions_byoc and _text_has_any(text, BYOC_FACT_WORDS)
-    return pending_reply or follows_byoc or (mentions_byoc and not asks_fact)
+    return pending_reply or follows_byoc or _is_byoc_overview_request(text) or (mentions_byoc and not asks_fact)
 
 
-def _byoc_followup_answer() -> str:
+def _byoc_intro_answer() -> str:
     return (
-        "To recommend BYOC accurately, tell me what you care about most: "
-        "leadership/business, mobile apps/software, networks/5G, data/AI, creative/media, or finance/marketing. "
-        "If you know your intake, also say March/April or October/November."
+        "BYOC means Build Your Own Curriculum: you choose approved electives that fit your goal. "
+        "Do you want a quick explanation, or should I help you choose?"
+    )
+
+
+def _byoc_explanation_answer() -> str:
+    return (
+        "BYOC uses your elective slots for approved subjects outside the fixed core. "
+        "For a recommendation, tell me your interest: mobile apps, data/AI, networks/5G, leadership/business, creative/media, or finance/marketing."
+    )
+
+
+def _byoc_choice_prompt_answer() -> str:
+    return (
+        "Tell me what you care about most: leadership/business, mobile apps/software, networks/5G, data/AI, creative/media, or finance/marketing. "
+        "If you know your intake, add March/April or October/November."
     )
 
 
@@ -319,9 +352,19 @@ def _answer_byoc_advice(question: str, session) -> dict | None:
     session.metadata["task_state"] = task_state
 
     if not interests:
+        text = question.lower()
+        if _wants_byoc_explanation(text) and not _wants_byoc_choice_help(text):
+            answer = _byoc_intro_answer() if _is_byoc_overview_request(text) else _byoc_explanation_answer()
+            route = "byoc_intro"
+        elif _wants_byoc_choice_help(text):
+            answer = _byoc_choice_prompt_answer()
+            route = "byoc_preference_followup"
+        else:
+            answer = _byoc_intro_answer()
+            route = "byoc_intro"
         return {
-            "answer": _byoc_followup_answer(),
-            "route": "byoc_preference_followup",
+            "answer": answer,
+            "route": route,
             "used_rag": True,
             "sources": ["programme_structure.jsonl", "master_qa_pairs.clean.jsonl"],
             "confidence": 0.9,

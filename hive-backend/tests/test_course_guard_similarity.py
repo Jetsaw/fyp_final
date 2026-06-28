@@ -1,4 +1,5 @@
 from app.rag.course_guard import answer_course_question
+from app.course_guard_server import _fallback_answer
 
 
 def test_similar_credit_question_uses_existing_qa_pair():
@@ -63,3 +64,11 @@ def test_singular_intelligent_robotic_overview_is_short():
         "Faculty of Artificial Intelligence and Engineering (FAIE). It is a 3-year programme. "
         "Do you want to know more?"
     )
+
+
+def test_unknown_question_uses_safe_staff_fallback():
+    answer = _fallback_answer("what is cafeteria menu on Mars?")
+
+    assert answer["route"] == "safe_fallback"
+    assert "rephrase your question" in answer["answer"]
+    assert "FAIE staff" in answer["answer"]

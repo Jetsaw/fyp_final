@@ -10,6 +10,8 @@ from datetime import datetime
 from pathlib import Path
 import asyncio
 
+SESSION_TTL_SECONDS = 10 * 60
+
 
 @dataclass
 class MessagePair:
@@ -143,6 +145,25 @@ class SessionManager:
         
         if storage_dir:
             storage_dir.mkdir(parents=True, exist_ok=True)
+
+    def _session_file(self, session_id: str) -> Optional[Path]:
+        if not self.storage_dir:
+            return None
+        return self.storage_dir / f"{session_id}.json"
+
+    def _is_expired(self, session: SessionState) -> bool:
+        try:
+            updated_at = datetime.fromisoformat(session.updated_at)
+        except (TypeError, ValueError):
+            return False
+        age_seconds = (datetime.utcnow() - updated_at).total_seconds()
+        return age_seconds >= SESSION_TTL_SECONDS
+
+    def _drop_session(self, session_id: str) -> None:
+        self.sessions.pop(session_id, None)
+        session_file = self._session_file(session_id)
+        if session_file and session_file.exists():
+            session_file.unlink()
     
     def get_session(self, session_id: str) -> SessionState:
         """
@@ -154,14 +175,20 @@ class SessionManager:
         Returns:
             SessionState
         """
+        if session_id in self.sessions and self._is_expired(self.sessions[session_id]):
+            self._drop_session(session_id)
+
         if session_id not in self.sessions:
             # Try to load from storage
             if self.storage_dir:
-                session_file = self.storage_dir / f"{session_id}.json"
+                session_file = self._session_file(session_id)
                 if session_file.exists():
                     with open(session_file, 'r', encoding='utf-8') as f:
                         data = json.load(f)
-                        self.sessions[session_id] = SessionState.from_dict(data)
+                    self.sessions[session_id] = SessionState.from_dict(data)
+                    if self._is_expired(self.sessions[session_id]):
+                        self._drop_session(session_id)
+                    else:
                         return self.sessions[session_id]
             
             # Create new session

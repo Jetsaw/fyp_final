@@ -45,7 +45,7 @@ def _greeting_answer(question: str) -> dict:
 def _fallback_answer(question: str) -> dict:
     return {
         "question": question,
-        "answer": "I could not match that to the Intelligent Robotics knowledge base. Ask about prerequisites, BYOC, study plan, Project I or Project II.",
+        "answer": "Sorry, I could not find that in the Hive academic knowledge base. Please rephrase your question, or ask FAIE staff for this item.",
         "route": "safe_fallback",
         "used_rag": False,
         "sources": [],
