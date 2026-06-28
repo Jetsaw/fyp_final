@@ -212,7 +212,9 @@ def _split_long_answer(answer: str) -> list[str]:
 
     sentences = [sentence for sentence in re.split(r"(?<=[.!?])\s+", answer.strip()) if sentence]
     if len(sentences) < 3:
-        return [answer]
+        words = answer.split()
+        size = max(1, (len(words) + 2) // 3)
+        return [" ".join(words[index : index + size]) for index in range(0, len(words), size)]
 
     size = max(1, (len(sentences) + 2) // 3)
     return [" ".join(sentences[index : index + size]) for index in range(0, len(sentences), size)]

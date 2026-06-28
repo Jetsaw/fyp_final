@@ -31,3 +31,14 @@ def test_full_detail_question_skips_answer_parting():
 
     assert _with_memory_answer_parts("show me the full answer", answer, session, memory) == answer
     assert "answer_parts" not in session.metadata
+
+
+def test_long_low_punctuation_answer_still_splits():
+    session = SessionState(session_id="parts-test")
+    memory = {"layers": {"profile": {}, "preferences": {}, "task_state": {}}}
+    answer = " ".join(f"technical_detail_{index}" for index in range(90))
+
+    first = _with_memory_answer_parts("what should I know", answer, session, memory)
+
+    assert first.endswith("Do you want to know more?")
+    assert session.metadata["answer_parts"]["next_index"] == 1
