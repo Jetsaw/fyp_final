@@ -198,7 +198,7 @@ class AskReq(BaseModel):
     user_id: str = "hive-kiosk"
 
 
-LONG_ANSWER_LIMIT = 430
+LONG_ANSWER_LIMIT = 320
 MORE_INTENT_RE = re.compile(r"^\s*(yes|yup|yeah|more|tell me more|continue|go on|next)\s*[.!?]*\s*$", re.IGNORECASE)
 
 
