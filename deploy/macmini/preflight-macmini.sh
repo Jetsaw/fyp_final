@@ -23,6 +23,7 @@ check "Node.js" "command -v node"
 check "npm" "command -v npm"
 check "Caddy" "command -v caddy"
 check "cloudflared" "command -v cloudflared"
+check "ffmpeg" "command -v ffmpeg"
 check "tar" "command -v tar"
 check "curl" "command -v curl"
 check "launchctl" "command -v launchctl"
@@ -43,9 +44,8 @@ fi
 echo
 if [ "$missing" -ne 0 ]; then
   echo "Install missing tools with:"
-  echo "  brew install python@3.11 node caddy cloudflared"
+  echo "  brew install python@3.11 node caddy cloudflared ffmpeg"
   exit 1
 fi
 
 echo "Mac mini preflight passed."
-

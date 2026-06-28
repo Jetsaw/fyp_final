@@ -23,7 +23,7 @@ xcode-select --install
 Install Homebrew if missing, then:
 
 ```bash
-brew install python@3.11 node caddy cloudflared
+brew install python@3.11 node caddy cloudflared ffmpeg
 ```
 
 Disable sleep for a server-style setup:
@@ -58,6 +58,8 @@ If the clean GitHub repository is ready, clone it on the Mac:
 ```bash
 git clone git@github.com:Jetsaw/fyp_final.git ~/hive
 ```
+
+To create the clean GitHub copy on Windows, run `deploy/windows/prepare-github-clean-copy.ps1`.
 
 If GitHub is not ready, package it from Windows instead:
 

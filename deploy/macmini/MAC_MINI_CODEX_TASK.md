@@ -64,7 +64,7 @@ bash ~/hive/deploy/macmini/preflight-macmini.sh
 If tools are missing, install:
 
 ```bash
-brew install python@3.11 node caddy cloudflared
+brew install python@3.11 node caddy cloudflared ffmpeg
 ```
 
 Also prevent sleep:
