@@ -41,6 +41,36 @@ QA_STOPWORDS = {
     "with",
     "you",
 }
+COURSE_CATEGORIES = {
+    "robotics": {
+        "aliases": ["robotic", "robotics", "robot", "robots", "drone", "drones"],
+        "matches": ["robot", "robots", "robotics", "drone", "drones", "actuators", "sensors"],
+    },
+    "math": {
+        "aliases": ["math", "maths", "mathematics", "calculus", "algebra"],
+        "matches": ["calculus", "equations", "algebra", "numerical methods"],
+    },
+    "electronics": {
+        "aliases": ["electronic", "electronics", "electrical", "circuit", "circuits"],
+        "matches": ["electronics", "electrical", "circuits", "electromagnetics", "signals", "instrumentation", "power systems"],
+    },
+    "hardware": {
+        "aliases": ["hardware", "embedded", "microcontroller", "microcontrollers", "microprocessor", "microprocessors"],
+        "matches": ["micro-controllers", "microprocessors", "embedded systems", "digital design", "rapid modelling"],
+    },
+    "programming": {
+        "aliases": ["programming", "software", "coding", "computer"],
+        "matches": ["programming", "computer", "advanced programming", "robot programming"],
+    },
+    "ai": {
+        "aliases": ["ai", "artificial intelligence", "machine learning", "vision"],
+        "matches": ["artificial intelligence", "machine learning", "machine vision", "image processing"],
+    },
+    "control": {
+        "aliases": ["control", "signal", "signals"],
+        "matches": ["control", "signals"],
+    },
+}
 
 
 def _normalize_question(question: str) -> str:
@@ -282,6 +312,11 @@ def _get_programme(query: str) -> dict[str, Any] | None:
     return None
 
 
+def _default_programme() -> dict[str, Any] | None:
+    programmes = _load_programmes()
+    return programmes[0] if len(programmes) == 1 else None
+
+
 def _make_answer(
     answer: str,
     sources: list[str],
@@ -316,6 +351,82 @@ def _format_courses(term: dict[str, Any], include_codes: bool) -> str:
     return ", ".join(formatted)
 
 
+def _query_year(query: str) -> str | None:
+    if _has_any(query, ["first sem", "first semester", "new join", "new student", "join the course", "start the course"]):
+        return "year-1"
+    match = re.search(r"\b(?:year|y)\s*([123])\b", query)
+    return f"year-{match.group(1)}" if match else None
+
+
+def _find_term(programme: dict[str, Any], term_id: str | None) -> dict[str, Any] | None:
+    if not term_id:
+        return None
+    for term in programme.get("terms", []):
+        if term.get("id") == term_id:
+            return term
+    return None
+
+
+def _category_key(query: str) -> str | None:
+    if not _has_any(query, ["course", "courses", "subject", "subjects", "program", "programme"]):
+        return None
+    for key, data in COURSE_CATEGORIES.items():
+        if _has_any(query, data["aliases"]):
+            return key
+    return None
+
+
+def _category_courses(programme: dict[str, Any], category: str, term_id: str | None = None) -> list[str]:
+    terms = [_find_term(programme, term_id)] if term_id else programme.get("terms", [])
+    matches = COURSE_CATEGORIES[category]["matches"]
+    courses: list[str] = []
+    for term in [term for term in terms if term]:
+        for course in term.get("courses", []):
+            if _has_any(course.lower(), matches):
+                courses.append(course)
+    return courses
+
+
+def _answer_category_question(query: str, programme: dict[str, Any]) -> dict[str, Any] | None:
+    category = _category_key(query)
+    if not category:
+        return None
+
+    wants_full = _has_any(query, ["all", "full", "complete", "list all"])
+    term_id = _query_year(query)
+    if not term_id and not wants_full:
+        return _make_answer(
+            f"Which year do you want for {category} courses: Year 1, Year 2, Year 3, or the full list?",
+            ["programme_structure.jsonl", programme["source"]],
+            0.9,
+            route="deterministic_course_category_prompt",
+        )
+
+    courses = _category_courses(programme, category, term_id)
+    scope = _find_term(programme, term_id)["label"] if term_id else "full list"
+    answer = f"{scope} {category} courses: {', '.join(courses)}." if courses else f"I could not find {category} courses in {scope}."
+    return _make_answer(
+        answer,
+        ["programme_structure.jsonl", programme["source"]],
+        0.98,
+        route="deterministic_course_category",
+    )
+
+
+def _answer_starter_courses(query: str, programme: dict[str, Any], include_codes: bool) -> dict[str, Any] | None:
+    if not _has_any(query, ["first sem", "first semester", "new join", "new student", "join the course", "start the course"]):
+        return None
+    term = _find_term(programme, "year-1")
+    if not term:
+        return None
+    return _make_answer(
+        f"The source structure groups this by year, not semester. New students start with Year 1 courses: {_format_courses(term, include_codes)}.",
+        ["programme_structure.jsonl", programme["source"]],
+        0.98,
+        route="deterministic_starter_courses",
+    )
+
+
 def _byoc_slot(query: str) -> str | None:
     match = re.search(r"\b(?:elective\s*([123])\s*byoc|byoc[-\s]*([123]))\b", query, re.IGNORECASE)
     return (match.group(1) or match.group(2)) if match else None
@@ -331,12 +442,20 @@ def answer_course_question(question: str) -> dict[str, Any] | None:
             route="safe_fallback",
         )
 
+    programme = _get_programme(query) or _default_programme()
+    include_codes = _wants_course_codes(question)
+    starter_answer = _answer_starter_courses(query, programme, include_codes) if programme else None
+    if starter_answer:
+        return starter_answer
+
+    category_answer = _answer_category_question(query, programme) if programme else None
+    if category_answer:
+        return category_answer
+
     eval_answer = _answer_eval_qa(question)
     if eval_answer:
         return eval_answer
 
-    programme = _get_programme(query)
-    include_codes = _wants_course_codes(question)
     slot = _byoc_slot(query)
 
     if _has_any(query, ["project progression", "progression rule", "progression rules"]):

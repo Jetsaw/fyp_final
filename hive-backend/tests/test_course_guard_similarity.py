@@ -75,3 +75,42 @@ def test_unknown_question_uses_safe_staff_fallback():
 
     standalone = _fallback_answer("what is cafeteria menu on Mars?")
     assert standalone["answer"] == answer["answer"]
+
+
+def test_category_question_asks_for_year_or_full_list():
+    answer = answer_course_question("what are the robotic program being offer")
+
+    assert answer
+    assert answer["route"] == "deterministic_course_category_prompt"
+    assert "Year 1" in answer["answer"]
+    assert "full list" in answer["answer"]
+
+
+def test_category_full_list_returns_names_without_codes():
+    answer = answer_course_question("give me the full list of robotic courses in this course")
+
+    assert answer
+    assert answer["route"] == "deterministic_course_category"
+    assert "Robotics - Machine Design and Mechanisms" in answer["answer"]
+    assert "Robot Programming" in answer["answer"]
+    assert "ARR" not in answer["answer"]
+
+
+def test_category_year_filter_returns_names_without_codes():
+    answer = answer_course_question("what are the electronic courses in year 1")
+
+    assert answer
+    assert answer["route"] == "deterministic_course_category"
+    assert "Electrical Circuits" in answer["answer"]
+    assert "Basic Electronics" in answer["answer"]
+    assert "ARE" not in answer["answer"]
+
+
+def test_new_join_question_uses_year_one_structure():
+    answer = answer_course_question("when i new join the course what course i take")
+
+    assert answer
+    assert answer["route"] == "deterministic_starter_courses"
+    assert "source structure groups this by year" in answer["answer"]
+    assert "Technical Calculus" in answer["answer"]
+    assert "Computer and Programming" in answer["answer"]
