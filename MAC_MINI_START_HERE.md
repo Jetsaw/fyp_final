@@ -2,6 +2,12 @@
 
 Use this after the GitHub clone finishes on the Mac mini.
 
+If Windows cannot SSH into this Mac yet, first read:
+
+```bash
+cat MAC_ENABLE_WINDOWS_SSH.md
+```
+
 ```bash
 cd ~/hive
 git pull --ff-only
