@@ -371,32 +371,35 @@ def _answer_byoc_advice(question: str, session) -> dict | None:
         }
 
     picks = []
-    for interest in interests:
+    for interest in sorted(interests):
         for option in BYOC_INTERESTS[interest]["subjects"]:
             if not intake or option[0] == intake:
                 picks.append((interest, *option))
 
     if not picks:
-        for interest in interests:
+        for interest in sorted(interests):
             picks.extend((interest, *option) for option in BYOC_INTERESTS[interest]["subjects"])
 
     seen = set()
-    lines = []
+    used_interests = set()
+    recommendations = []
     for interest, option_intake, subject, reason in picks:
+        if interest in used_interests:
+            continue
         key = (option_intake, subject)
         if key in seen:
             continue
         seen.add(key)
-        lines.append(f"{len(lines) + 1}. {subject} ({option_intake}) - {reason}.")
-        if len(lines) == 4:
+        used_interests.add(interest)
+        recommendations.append(f"{subject} ({option_intake}) for {BYOC_INTERESTS[interest]['label']}")
+        if len(recommendations) == 2:
             break
 
-    labels = ", ".join(BYOC_INTERESTS[i]["label"] for i in sorted(interests))
     intake_text = f" for {intake}" if intake else ""
+    pick_text = "; ".join(recommendations)
     answer = (
-        f"Based on your BYOC preference{intake_text}: {labels}. "
-        f"My best picks are:\n" + "\n".join(lines) +
-        "\nI saved this preference, so you can ask follow-up questions like 'which one is easier?' or 'which fits robotics projects best?'."
+        f"For your BYOC preference{intake_text}, pick {pick_text}. "
+        "I saved this preference, so you can ask which one fits your robotics project."
     )
 
     task_state.pop("pending_flow", None)

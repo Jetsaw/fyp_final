@@ -39,6 +39,8 @@ def test_byoc_flow_uses_next_turn_preferences():
     assert answer["route"] == "byoc_memory_recommendation"
     assert "Introductory Mobile Application Development" in answer["answer"]
     assert "Radio Network Planning Towards 5G" in answer["answer"]
+    assert len(answer["answer"]) < 320
+    assert "Do you want to know more?" not in answer["answer"]
     assert session.preferences["byoc"]["interests"] == ["apps", "networks"]
 
     followup = _answer_byoc_advice("which one fits robotics projects best?", session)
