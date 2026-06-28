@@ -31,6 +31,8 @@ The archive excludes:
 - `setup-cloudflare-tunnel.sh`: creates/routes/installs Cloudflare Tunnel after login.
 - `status.sh`: checks backend, Caddy, public health, and logs.
 - `smoke-test.sh`: checks `/api/health` and a real `/ask` answer.
+- `collect-evidence.sh`: prints the local, public, and service evidence to report back.
+- `deploy/windows/prepare-github-clean-copy.ps1`: creates a safe clean copy for GitHub push.
 
 ## Fast Path Commands
 
@@ -61,6 +63,7 @@ On the Mac mini:
 cloudflared tunnel login
 bash ~/hive/deploy/macmini/setup-cloudflare-tunnel.sh hive.yourdomain.com
 bash ~/hive/deploy/macmini/status.sh https://hive.yourdomain.com
+bash ~/hive/deploy/macmini/collect-evidence.sh https://hive.yourdomain.com
 ```
 
 ## Required External Inputs

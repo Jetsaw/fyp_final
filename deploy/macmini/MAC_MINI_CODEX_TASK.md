@@ -41,6 +41,7 @@ Important files:
 ~/hive/deploy/macmini/setup-cloudflare-tunnel.sh
 ~/hive/deploy/macmini/status.sh
 ~/hive/deploy/macmini/smoke-test.sh
+~/hive/deploy/macmini/collect-evidence.sh
 ```
 
 ## Rules
@@ -155,6 +156,7 @@ Run:
 ```bash
 bash ~/hive/deploy/macmini/status.sh "https://$DOMAIN"
 bash ~/hive/deploy/macmini/smoke-test.sh "https://$DOMAIN"
+bash ~/hive/deploy/macmini/collect-evidence.sh "https://$DOMAIN"
 ```
 
 Browser checks:
@@ -179,6 +181,7 @@ curl http://127.0.0.1:8000/api/health
 curl http://127.0.0.1:8080/api/health
 curl "https://$DOMAIN/api/health"
 bash ~/hive/deploy/macmini/smoke-test.sh "https://$DOMAIN"
+bash ~/hive/deploy/macmini/collect-evidence.sh "https://$DOMAIN"
 ```
 
 ## Completion Evidence To Report Back
