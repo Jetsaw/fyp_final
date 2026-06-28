@@ -52,3 +52,14 @@ def test_intelligent_robotics_overview_is_short_and_invites_followup():
         "Faculty of Artificial Intelligence and Engineering (FAIE). It is a 3-year programme. "
         "Do you want to know more?"
     )
+
+
+def test_singular_intelligent_robotic_overview_is_short():
+    answer = answer_course_question("tell me about intelligent robotic")
+
+    assert answer
+    assert answer["answer"] == (
+        "Bachelor of Science (Honours) in Intelligent Robotics is offered by the "
+        "Faculty of Artificial Intelligence and Engineering (FAIE). It is a 3-year programme. "
+        "Do you want to know more?"
+    )

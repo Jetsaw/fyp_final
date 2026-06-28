@@ -19,7 +19,9 @@ export const programmes = [
     "shortName": "Intelligent Robotics",
     "aliases": [
       "intelligent robotics",
+      "intelligent robotic",
       "robotics",
+      "robotic",
       "rob"
     ],
     "source": "MMU Intelligent Robotics programme page",

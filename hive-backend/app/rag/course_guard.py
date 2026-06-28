@@ -7,6 +7,11 @@ from typing import Any
 
 
 COURSE_CODE_RE = re.compile(r"\b[A-Z]{2,4}\d{3,4}(?:-[A-Z0-9]+)?\b", re.IGNORECASE)
+SHORT_ROBOTICS_OVERVIEW = (
+    "Bachelor of Science (Honours) in Intelligent Robotics is offered by the "
+    "Faculty of Artificial Intelligence and Engineering (FAIE). It is a 3-year programme. "
+    "Do you want to know more?"
+)
 QA_STOPWORDS = {
     "about",
     "also",
@@ -41,6 +46,7 @@ QA_STOPWORDS = {
 def _normalize_question(question: str) -> str:
     return (
         question.lower()
+        .replace("intelligent robotic", "intelligent robotics")
         .replace("project one", "project i")
         .replace("project 1", "project i")
         .replace("project two", "project ii")
@@ -70,6 +76,7 @@ def _qa_exact_key(question: str) -> str:
         "hw": "how",
         "inn": "in",
         "inteligent": "intelligent",
+        "robotic": "robotics",
         "robotcs": "robotics",
         "programe": "programme",
         "progam": "program",
@@ -118,11 +125,7 @@ def _load_programmes() -> list[dict[str, Any]]:
 def _format_qa_answer(row: dict[str, Any]) -> str:
     answer = str(row["answer"]).strip()
     if row.get("id") == "IR-WEB-OVERVIEW" or row.get("source_record_id") == "IR-WEB-OVERVIEW" or row.get("type") == "programme_overview":
-        return (
-            "Bachelor of Science (Honours) in Intelligent Robotics is offered by the "
-            "Faculty of Artificial Intelligence and Engineering (FAIE). It is a 3-year programme. "
-            "Do you want to know more?"
-        )
+        return SHORT_ROBOTICS_OVERVIEW
     if "last modified" in _qa_key(row["question"]):
         return f"The MMU page metadata lists the last modified time as {answer}."
     if re.fullmatch(r"\d+(?:\.\d+)?", answer) and row.get("course_code") and "credit" in _qa_key(row["question"]):
@@ -415,9 +418,9 @@ def answer_course_question(question: str) -> dict[str, Any] | None:
             0.98,
         )
 
-    if _has_any(query, ["programme name", "overview", "intake"]):
+    if _has_any(query, ["programme name", "overview", "intake", "about"]):
         return _make_answer(
-            programme["overview"],
+            SHORT_ROBOTICS_OVERVIEW,
             ["programme_structure.jsonl", programme["source"]],
             0.98,
         )
