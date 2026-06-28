@@ -111,6 +111,6 @@ def test_new_join_question_uses_year_one_structure():
 
     assert answer
     assert answer["route"] == "deterministic_starter_courses"
-    assert "source structure groups this by year" in answer["answer"]
+    assert "Source is by year, not semester" in answer["answer"]
     assert "Technical Calculus" in answer["answer"]
     assert "Computer and Programming" in answer["answer"]

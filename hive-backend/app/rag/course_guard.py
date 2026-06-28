@@ -420,7 +420,7 @@ def _answer_starter_courses(query: str, programme: dict[str, Any], include_codes
     if not term:
         return None
     return _make_answer(
-        f"The source structure groups this by year, not semester. New students start with Year 1 courses: {_format_courses(term, include_codes)}.",
+        f"Source is by year, not semester. Year 1: {_format_courses(term, include_codes)}.",
         ["programme_structure.jsonl", programme["source"]],
         0.98,
         route="deterministic_starter_courses",
