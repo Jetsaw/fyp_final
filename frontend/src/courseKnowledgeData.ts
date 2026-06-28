@@ -23,7 +23,7 @@ export const programmes = [
       "rob"
     ],
     "source": "MMU Intelligent Robotics programme page",
-    "overview": "Bachelor of Science (Honours) in Intelligent Robotics is offered by Faculty of Artificial Intelligence and Engineering (FAIE). The programme page lists registration (R/0788/6/00177) 01/31 and accreditation (MQA/SWA14238). The Bachelor of Science (Honours) Intelligent Robotics is a 3-year programme that strikes an exquisite balance between the fundamentals of engineering and hands-on practical skills. This multidisciplinary programme combines electronics, robotics, artificial intelligence, automation, and computer programming. It adopts a modern learning approach with early exposure to real-world applications. Graduates will be agile knowledge workers in the IR4.0 age and beyond, highly sought after by the industry.",
+    "overview": "Bachelor of Science (Honours) in Intelligent Robotics is offered by the Faculty of Artificial Intelligence and Engineering (FAIE). It is a 3-year programme. Do you want to know more?",
     "terms": [
       {
         "id": "year-1",

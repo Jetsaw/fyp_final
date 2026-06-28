@@ -117,6 +117,12 @@ def _load_programmes() -> list[dict[str, Any]]:
 
 def _format_qa_answer(row: dict[str, Any]) -> str:
     answer = str(row["answer"]).strip()
+    if row.get("id") == "IR-WEB-OVERVIEW" or row.get("source_record_id") == "IR-WEB-OVERVIEW" or row.get("type") == "programme_overview":
+        return (
+            "Bachelor of Science (Honours) in Intelligent Robotics is offered by the "
+            "Faculty of Artificial Intelligence and Engineering (FAIE). It is a 3-year programme. "
+            "Do you want to know more?"
+        )
     if "last modified" in _qa_key(row["question"]):
         return f"The MMU page metadata lists the last modified time as {answer}."
     if re.fullmatch(r"\d+(?:\.\d+)?", answer) and row.get("course_code") and "credit" in _qa_key(row["question"]):
@@ -152,6 +158,7 @@ def _load_eval_qa() -> dict[str, Any]:
                         "answer": answer,
                         "source": filename,
                         "id": row.get("id"),
+                        "source_record_id": row.get("source_record_id"),
                         "category": row.get("category"),
                         "type": row.get("type"),
                         "course_code": row.get("course_code"),
