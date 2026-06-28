@@ -4,6 +4,7 @@ Use this after the GitHub clone finishes on the Mac mini.
 
 ```bash
 cd ~/hive
+git pull --ff-only
 cat deploy/macmini/MAC_MINI_CODEX_TASK.md
 ```
 
