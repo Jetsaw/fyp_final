@@ -123,7 +123,7 @@ BYOC_ADVICE_WORDS = ["choose", "recommend", "should", "pick", "like", "interest"
 BYOC_FOLLOWUP_WORDS = ["which one", "easier", "harder", "fits"]
 BYOC_PREFERENCE_REPLY_WORDS = ["like", "interest", "interested", "prefer", "want", "enjoy", "good at"]
 BYOC_EXPLAIN_WORDS = ["explain", "tell me more", "more info", "more information", "quick explanation"]
-BYOC_CHOOSE_WORDS = ["choose", "help me choose", "recommend", "pick", "guide me"]
+BYOC_CHOOSE_WORDS = ["choose", "help me choose", "recommend", "pick", "guide me", "advise", "advice"]
 
 GLOBAL_INDEX = None
 GLOBAL_METAS = None
@@ -301,6 +301,28 @@ def _byoc_interests(question: str) -> list[str]:
     ]
 
 
+def _byoc_goal(question: str) -> str | None:
+    text = question.lower()
+    if _text_has_any(text, ["career", "job", "employ", "industry", "skill"]):
+        return "career skill"
+    if _text_has_any(text, ["project", "fyp", "robotics project", "portfolio"]):
+        return "robotics project"
+    if _text_has_any(text, ["easy", "easier", "light", "lighter", "manageable", "safe"]):
+        return "manageable workload"
+    if _text_has_any(text, ["explore", "try", "new thing", "not sure", "unsure"]):
+        return "exploration"
+    return None
+
+
+def _byoc_workload(question: str) -> str | None:
+    text = question.lower()
+    if _text_has_any(text, ["easy", "easier", "light", "lighter", "manageable", "safe"]):
+        return "lighter"
+    if _text_has_any(text, ["hard", "harder", "challenge", "strong", "best", "career", "project"]):
+        return "stronger fit"
+    return None
+
+
 def _is_byoc_overview_request(text: str) -> bool:
     has_byoc = "byoc" in text or "elective" in text
     return has_byoc and _text_has_any(
@@ -324,6 +346,8 @@ def _is_byoc_advice_turn(question: str, session) -> bool:
     pending_reply = pending and (
         bool(_byoc_interests(question))
         or bool(_byoc_intake(question))
+        or bool(_byoc_goal(question))
+        or bool(_byoc_workload(question))
         or _text_has_any(text, BYOC_PREFERENCE_REPLY_WORDS)
         or _wants_byoc_explanation(text)
         or _wants_byoc_choice_help(text)
@@ -337,22 +361,32 @@ def _is_byoc_advice_turn(question: str, session) -> bool:
 def _byoc_intro_answer() -> str:
     return (
         "BYOC means Build Your Own Curriculum: you choose approved electives that fit your goal. "
-        "Do you want a quick explanation, or should I help you choose?"
+        "Do you want a quick explanation, or should I advise you step by step?"
     )
 
 
 def _byoc_explanation_answer() -> str:
     return (
         "BYOC uses your elective slots for approved subjects outside the fixed core. "
-        "For a recommendation, tell me your interest: mobile apps, data/AI, networks/5G, leadership/business, creative/media, or finance/marketing."
+        "For advice, tell me your goal: career skill, robotics project, lighter workload, or exploration."
     )
 
 
 def _byoc_choice_prompt_answer() -> str:
     return (
-        "Tell me what you care about most: leadership/business, mobile apps/software, networks/5G, data/AI, creative/media, or finance/marketing. "
-        "If you know your intake, add March/April or October/November."
+        "I will advise in steps. First, what is your goal: career skill, robotics project, lighter workload, or exploration?"
     )
+
+
+def _byoc_interest_prompt_answer(goal: str | None = None) -> str:
+    prefix = f"For {goal}, " if goal else ""
+    return (
+        f"{prefix}which area do you prefer: mobile apps/software, networks/5G, data/AI, leadership/business, creative/media, or finance/marketing?"
+    )
+
+
+def _byoc_workload_prompt_answer() -> str:
+    return "Do you prefer a lighter workload or a stronger fit for career/project work?"
 
 
 def _answer_byoc_advice(question: str, session) -> dict | None:
@@ -365,6 +399,8 @@ def _answer_byoc_advice(question: str, session) -> dict | None:
     interests.update(_byoc_interests(question))
 
     intake = _byoc_intake(question) or byoc.get("intake")
+    goal = _byoc_goal(question) or byoc.get("goal")
+    workload = _byoc_workload(question) or byoc.get("workload")
     task_state = dict(session.metadata.get("task_state") or {})
     task_state["pending_flow"] = "byoc"
 
@@ -372,10 +408,32 @@ def _answer_byoc_advice(question: str, session) -> dict | None:
         byoc["interests"] = sorted(interests)
     if intake:
         byoc["intake"] = intake
+    if goal:
+        byoc["goal"] = goal
+    if workload:
+        byoc["workload"] = workload
 
     preferences["byoc"] = byoc
     session.preferences = preferences
     session.metadata["task_state"] = task_state
+
+    if goal and not interests:
+        return {
+            "answer": _byoc_interest_prompt_answer(goal),
+            "route": "byoc_advice_interest_prompt",
+            "used_rag": True,
+            "sources": ["programme_structure.jsonl", "master_qa_pairs.clean.jsonl"],
+            "confidence": 0.9,
+        }
+
+    if interests and not goal:
+        return {
+            "answer": _byoc_workload_prompt_answer(),
+            "route": "byoc_advice_goal_prompt",
+            "used_rag": True,
+            "sources": ["programme_structure.jsonl", "master_qa_pairs.clean.jsonl"],
+            "confidence": 0.9,
+        }
 
     if not interests:
         text = question.lower()
@@ -424,8 +482,8 @@ def _answer_byoc_advice(question: str, session) -> dict | None:
     intake_text = f" for {intake}" if intake else ""
     pick_text = "; ".join(recommendations)
     answer = (
-        f"For your BYOC preference{intake_text}, pick {pick_text}. "
-        "I saved this preference, so you can ask which one fits your robotics project."
+        f"For your BYOC goal ({goal}){intake_text}, pick {pick_text}. "
+        "I saved this advice profile, so you can ask which one fits you better."
     )
 
     task_state.pop("pending_flow", None)
@@ -599,7 +657,7 @@ async def chat(req: ChatReq):
         SESSION_MANAGER.add_to_history(user_id, "assistant", byoc_answer["answer"])
         save_message(user_id, "assistant", byoc_answer["answer"])
         return byoc_answer | {
-            "memory": memory_status,
+            "memory": SESSION_MANAGER.get_memory_status(user_id),
         }
 
     guarded_answer = answer_course_question(question)

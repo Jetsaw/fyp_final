@@ -10,7 +10,7 @@ def test_byoc_flow_asks_for_preferences_first():
     assert answer
     assert answer["route"] == "byoc_intro"
     assert "Build Your Own Curriculum" in answer["answer"]
-    assert "help you choose" in answer["answer"]
+    assert "advise you step by step" in answer["answer"]
     assert session.metadata["task_state"]["pending_flow"] == "byoc"
 
 
@@ -26,12 +26,17 @@ def test_byoc_flow_explains_then_collects_preferences():
     choice = _answer_byoc_advice("help me choose", session)
     assert choice
     assert choice["route"] == "byoc_preference_followup"
-    assert "Tell me what you care about most" in choice["answer"]
+    assert "what is your goal" in choice["answer"]
 
 
 def test_byoc_flow_uses_next_turn_preferences():
     session = SessionState(session_id="byoc-test")
     _answer_byoc_advice("Help me choose BYOC", session)
+
+    goal = _answer_byoc_advice("I want career skill", session)
+    assert goal
+    assert goal["route"] == "byoc_advice_interest_prompt"
+    assert session.preferences["byoc"]["goal"] == "career skill"
 
     answer = _answer_byoc_advice("I like mobile apps and wireless networks", session)
 
@@ -42,11 +47,28 @@ def test_byoc_flow_uses_next_turn_preferences():
     assert len(answer["answer"]) < 320
     assert "Do you want to know more?" not in answer["answer"]
     assert session.preferences["byoc"]["interests"] == ["apps", "networks"]
+    assert session.preferences["byoc"]["goal"] == "career skill"
 
     followup = _answer_byoc_advice("which one fits robotics projects best?", session)
     assert followup
     assert followup["route"] == "byoc_memory_recommendation"
     assert "Introductory Mobile Application Development" in followup["answer"]
+
+
+def test_byoc_flow_remembers_interests_then_asks_advice_goal():
+    session = SessionState(session_id="byoc-test")
+    _answer_byoc_advice("Help me choose BYOC", session)
+
+    goal_prompt = _answer_byoc_advice("I like mobile apps and wireless networks", session)
+    assert goal_prompt
+    assert goal_prompt["route"] == "byoc_advice_goal_prompt"
+    assert "lighter workload" in goal_prompt["answer"]
+    assert session.preferences["byoc"]["interests"] == ["apps", "networks"]
+
+    answer = _answer_byoc_advice("stronger career fit", session)
+    assert answer
+    assert answer["route"] == "byoc_memory_recommendation"
+    assert "career skill" in answer["answer"]
 
 
 def test_byoc_fact_question_escapes_preference_memory():
