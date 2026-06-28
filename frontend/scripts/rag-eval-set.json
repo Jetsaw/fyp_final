@@ -1,0 +1,122 @@
+[
+  {
+    "id": "project_i_prereq",
+    "question": "What are the prerequisites for Project I?",
+    "expectedKeywords": ["60 credit", "Project I"],
+    "expectedSources": ["prereq"]
+  },
+  {
+    "id": "project_i_simple",
+    "question": "What is Project I?",
+    "expectedKeywords": ["Project I", "60 credit"],
+    "expectedSources": ["prereq"]
+  },
+  {
+    "id": "project_ii_prereq",
+    "question": "What are the prerequisites for Project II?",
+    "expectedKeywords": ["Project II"],
+    "expectedSources": ["prereq"]
+  },
+  {
+    "id": "course_code_query",
+    "question": "Tell me about ARP6110-P1.",
+    "expectedKeywords": ["ARP6110", "Project I"],
+    "expectedSources": []
+  },
+  {
+    "id": "progression_rules",
+    "question": "What should I know about progression rules?",
+    "expectedKeywords": ["progression"],
+    "expectedSources": []
+  },
+  {
+    "id": "robotics_year_1",
+    "question": "What courses are listed in Year 1 for Intelligent Robotics?",
+    "expectedKeywords": ["Technical Calculus", "Computer and Programming", "Micro-Controllers", "Electrical Circuits", "Rapid Modelling"],
+    "expectedSources": ["programme_structure"]
+  },
+  {
+    "id": "robotics_year_1_codes",
+    "question": "What course codes are listed in Year 1 for Intelligent Robotics?",
+    "expectedKeywords": ["ARM6113", "ARC6113", "ARC6123", "ARL6113", "MID6113"],
+    "expectedSources": ["programme_structure"]
+  },
+  {
+    "id": "robotics_faculty",
+    "question": "Which faculty offers the Intelligent Robotics programme?",
+    "expectedKeywords": ["Faculty of Artificial Intelligence and Engineering", "FAIE"],
+    "expectedSources": ["programme_structure"]
+  },
+  {
+    "id": "robotics_accreditation",
+    "question": "What are the registration and accreditation identifiers for Intelligent Robotics?",
+    "expectedKeywords": ["R/0788/6/00177", "MQA/SWA14238"],
+    "expectedSources": ["programme_structure"]
+  },
+  {
+    "id": "robotics_page_actions",
+    "question": "What action links are provided on the MMU Intelligent Robotics page?",
+    "expectedKeywords": ["ENQUIRE NOW", "HOW TO APPLY", "DOWNLOAD BROCHURE", "DOWNLOAD PROGRAMME FEES"],
+    "expectedSources": ["programme_structure"]
+  },
+  {
+    "id": "robotics_dkm_bridging_note",
+    "question": "What note applies to DKM, DLKM or DVM applicants for Intelligent Robotics?",
+    "expectedKeywords": ["Bridging Programme", "DKM", "DLKM", "DVM"],
+    "expectedSources": ["programme_structure"]
+  },
+  {
+    "id": "robotics_year_2",
+    "question": "List the Year 2 Intelligent Robotics courses.",
+    "expectedKeywords": ["Linear Systems", "Robotics - Machine Design", "Introduction to Artificial Intelligence", "Feedback Control", "Machine Vision"],
+    "expectedSources": ["programme_structure"]
+  },
+  {
+    "id": "robotics_year_3",
+    "question": "What courses and activities are in Year 3 for Intelligent Robotics?",
+    "expectedKeywords": ["Mobile Robots and Drones", "Project I", "Project II", "Industrial Training", "BYOC"],
+    "expectedSources": ["programme_structure"]
+  },
+  {
+    "id": "robotics_industrial_training",
+    "question": "What is the prerequisite for industrial training in Intelligent Robotics?",
+    "expectedKeywords": ["Industrial Training", "60 credit"],
+    "expectedSources": ["programme_structure"]
+  },
+  {
+    "id": "robotics_byoc_march_recommendation",
+    "question": "What BYOC elective subjects are offered in March/April for Intelligent Robotics?",
+    "expectedKeywords": ["Fundamentals of Marketing", "Project Management", "Introductory Mobile Application Development", "Want the full list"],
+    "expectedSources": ["programme_structure"]
+  },
+  {
+    "id": "robotics_mpu",
+    "question": "What MPU or university courses are included in Intelligent Robotics?",
+    "expectedKeywords": ["Character Building", "Fundamentals of Digital Competence", "Integrity and Leadership"],
+    "expectedSources": ["programme_structure"]
+  },
+  {
+    "id": "robotics_masterplan_assessment",
+    "question": "How is ARM6113 Technical Calculus assessed?",
+    "expectedKeywords": ["Tests/Quizzes", "40%", "Final Examination", "60%"],
+    "expectedSources": ["intelligent_robotics_qa_pairs", "Master&Plan"]
+  },
+  {
+    "id": "robotics_masterplan_clo",
+    "question": "What is CLO 1 for ARM6113?",
+    "expectedKeywords": ["Compute the limits", "derivatives", "integrals", "single-variable"],
+    "expectedSources": ["intelligent_robotics_qa_pairs", "Master&Plan"]
+  },
+  {
+    "id": "robotics_masterplan_alias",
+    "question": "What canonical subject does alias code MID6113 map to?",
+    "expectedKeywords": ["MID6113", "MMD6123", "Digital Fabrication and Prototyping"],
+    "expectedSources": ["intelligent_robotics_qa_pairs", "Master&Plan"]
+  },
+  {
+    "id": "robotics_masterplan_topics",
+    "question": "What topics are covered in ARL6113 Electrical Circuits?",
+    "expectedKeywords": ["Circuit elements", "Network analysis", "Transient analysis"],
+    "expectedSources": ["intelligent_robotics_qa_pairs", "Master&Plan"]
+  }
+]

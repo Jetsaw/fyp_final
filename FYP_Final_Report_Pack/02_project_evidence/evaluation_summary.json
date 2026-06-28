@@ -1,0 +1,31 @@
+{
+  "product": {
+    "baseUrl": "http://127.0.0.1:5174",
+    "total": 20,
+    "passed": 20,
+    "generatedAt": "2026-06-16T04:33:17.060Z"
+  },
+  "raw_backend": {
+    "baseUrl": "http://127.0.0.1:8021",
+    "total": 20,
+    "passed": 20,
+    "generatedAt": "2026-06-18T09:37:49.495Z"
+  },
+  "qa_all": {
+    "baseUrl": "http://127.0.0.1:8000",
+    "total": 1315,
+    "passed": 1315,
+    "failed": 0,
+    "averageScore": 1,
+    "minScore": 1,
+    "durationSeconds": 2.77,
+    "generatedAt": "2026-06-15T19:32:20.949Z"
+  },
+  "beginner_500": {
+    "total": 500,
+    "passed": 500,
+    "failed": 0
+  },
+  "status_markdown_exists": true,
+  "live_accuracy_summary_exists": true
+}

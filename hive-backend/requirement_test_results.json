@@ -1,0 +1,27 @@
+{
+  "tests_passed": 0,
+  "tests_failed": 5,
+  "details": [
+    {
+      "test": "Backend Health",
+      "status": "FAIL"
+    },
+    {
+      "test": "Structure Layer Query",
+      "status": "FAIL",
+      "answer": ""
+    },
+    {
+      "test": "Alias Resolution",
+      "status": "FAIL"
+    },
+    {
+      "test": "Course Code Detection",
+      "status": "FAIL"
+    },
+    {
+      "test": "New RAG Integration",
+      "status": "PARTIAL"
+    }
+  ]
+}

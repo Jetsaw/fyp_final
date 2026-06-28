@@ -1,0 +1,430 @@
+.avatar-exact {
+  position: relative;
+  width: 100%;
+  height: 100%;
+  min-height: 520px;
+  overflow: hidden;
+  isolation: isolate;
+  background:
+    linear-gradient(180deg, rgba(211, 231, 255, 0.24), rgba(25, 42, 58, 0.18) 46%, rgba(8, 13, 22, 0.86)),
+    rgba(10, 20, 32, 0.92);
+}
+
+.avatar-exact-screen,
+.avatar-exact-grid,
+.avatar-exact-light {
+  position: absolute;
+  inset: 0;
+  pointer-events: none;
+}
+
+.avatar-exact-screen {
+  z-index: 0;
+  background:
+    radial-gradient(circle at 52% 44%, rgba(125, 211, 252, 0.16), transparent 36%),
+    linear-gradient(90deg, rgba(255, 255, 255, 0.1), transparent 18%, transparent 82%, rgba(255, 255, 255, 0.08));
+}
+
+.avatar-exact-grid {
+  z-index: 1;
+  opacity: 0.18;
+  background-image:
+    linear-gradient(rgba(255, 255, 255, 0.11) 1px, transparent 1px),
+    linear-gradient(90deg, rgba(255, 255, 255, 0.1) 1px, transparent 1px);
+  background-size: 46px 46px;
+  mask-image: linear-gradient(180deg, transparent, black 20%, black 74%, transparent);
+}
+
+.avatar-exact-light {
+  z-index: 2;
+  background:
+    linear-gradient(90deg, transparent 0%, rgba(255, 255, 255, 0.2) 49.4%, rgba(255, 255, 255, 0.62) 50%, rgba(255, 255, 255, 0.18) 50.6%, transparent 100%),
+    linear-gradient(180deg, rgba(255, 255, 255, 0.16), transparent 30%);
+  mix-blend-mode: screen;
+  opacity: 0.45;
+}
+
+.avatar-exact-stage {
+  position: absolute;
+  z-index: 4;
+  inset: 0;
+  display: flex;
+  align-items: flex-end;
+  justify-content: center;
+  padding: clamp(116px, 15dvh, 160px) clamp(18px, 4vw, 42px) clamp(106px, 13dvh, 150px);
+}
+
+.avatar-exact-rig {
+  position: relative;
+  width: min(72vw, 500px);
+  max-width: 86%;
+  max-height: 76dvh;
+  transform-origin: 50% 64%;
+  filter:
+    drop-shadow(0 36px 42px rgba(0, 0, 0, 0.42))
+    drop-shadow(0 0 28px rgba(103, 232, 249, 0.28));
+  animation: exactIdle 8.5s cubic-bezier(0.45, 0, 0.55, 1) infinite;
+  will-change: transform;
+}
+
+.avatar-exact-image,
+.avatar-exact-video {
+  display: block;
+  width: 100%;
+  max-height: 76dvh;
+  object-fit: contain;
+  transform-origin: 50% 64%;
+  backface-visibility: hidden;
+}
+
+.avatar-exact-video {
+  position: relative;
+  z-index: 2;
+}
+
+.avatar-exact-mode-video .avatar-exact-rig {
+  aspect-ratio: 840 / 1188;
+}
+
+.avatar-exact-mode-video .avatar-exact-video,
+.avatar-exact-mode-video .avatar-exact-image-fallback {
+  position: absolute;
+  inset: 0;
+  width: 100%;
+  height: 100%;
+  object-fit: contain;
+}
+
+.avatar-exact-canvas {
+  background: transparent;
+}
+
+.avatar-exact-source-video {
+  position: absolute;
+  width: 1px;
+  height: 1px;
+  opacity: 0;
+  pointer-events: none;
+}
+
+.avatar-exact-preload-video {
+  position: absolute;
+  width: 1px;
+  height: 1px;
+  opacity: 0;
+  pointer-events: none;
+}
+
+.avatar-exact-image-fallback {
+  position: absolute;
+  inset: 0;
+  opacity: 0;
+  pointer-events: none;
+}
+
+.avatar-exact-mouth-mask {
+  position: absolute;
+  z-index: 5;
+  left: 50%;
+  top: 32.7%;
+  width: 18%;
+  height: 6.2%;
+  transform: translate(-50%, 0) scaleY(0.82);
+  transform-origin: 50% 45%;
+  opacity: 0;
+  pointer-events: none;
+  border-radius: 999px 999px 760px 760px;
+  background:
+    radial-gradient(ellipse at 50% 40%, rgba(238, 242, 247, 0.22), transparent 58%),
+    linear-gradient(180deg, rgba(185, 194, 205, 0.7), rgba(94, 107, 123, 0.44));
+  box-shadow:
+    inset 0 7px 12px rgba(255, 255, 255, 0.14),
+    inset 0 -6px 12px rgba(15, 23, 42, 0.2),
+    0 2px 8px rgba(15, 23, 42, 0.16);
+  mix-blend-mode: soft-light;
+}
+
+.avatar-exact-mouth-mask span {
+  position: absolute;
+  left: 50%;
+  top: 50%;
+  width: 42%;
+  height: 14%;
+  transform: translate(-50%, -50%) scaleX(0.86);
+  border-radius: 999px;
+  background: rgba(30, 41, 59, 0.34);
+  opacity: 0.52;
+}
+
+.avatar-exact-shadow {
+  position: absolute;
+  left: 50%;
+  bottom: clamp(92px, 11dvh, 132px);
+  width: min(58%, 390px);
+  height: 72px;
+  transform: translateX(-50%);
+  border-radius: 999px;
+  background:
+    radial-gradient(ellipse at center, rgba(103, 232, 249, 0.4), rgba(59, 130, 246, 0.14) 50%, transparent 72%);
+  filter: blur(8px);
+}
+
+.avatar-exact-status {
+  position: absolute;
+  z-index: 7;
+  top: clamp(84px, 12dvh, 138px);
+  left: clamp(18px, 3vw, 34px);
+  display: inline-flex;
+  align-items: center;
+  gap: 8px;
+  padding: 8px 13px;
+  border-radius: 999px;
+  color: rgba(248, 250, 252, 0.92);
+  background: rgba(8, 13, 22, 0.44);
+  border: 1px solid rgba(255, 255, 255, 0.14);
+  backdrop-filter: blur(12px);
+  font-size: 11px;
+  font-weight: 900;
+  letter-spacing: 0.1em;
+}
+
+.avatar-exact-status span {
+  width: 8px;
+  height: 8px;
+  border-radius: 999px;
+  background: #67e8f9;
+  box-shadow: 0 0 14px rgba(103, 232, 249, 0.9);
+}
+
+.avatar-exact-caption {
+  position: absolute;
+  z-index: 7;
+  left: clamp(14px, 2.5vw, 28px);
+  right: clamp(90px, 13vw, 112px);
+  bottom: clamp(120px, 15dvh, 154px);
+  padding: 12px 14px;
+  border-radius: 8px;
+  color: rgba(248, 250, 252, 0.9);
+  background: rgba(8, 13, 22, 0.42);
+  border: 1px solid rgba(255, 255, 255, 0.1);
+  backdrop-filter: blur(10px);
+  font-size: clamp(12px, 1.45dvh, 15px);
+  line-height: 1.45;
+}
+
+.avatar-exact-listening .avatar-exact-rig {
+  animation: exactListening 6.8s cubic-bezier(0.45, 0, 0.55, 1) infinite;
+}
+
+.avatar-exact-thinking .avatar-exact-rig {
+  animation: exactThinking 7.4s cubic-bezier(0.45, 0, 0.55, 1) infinite;
+}
+
+.avatar-exact-speaking .avatar-exact-rig {
+  animation: exactSpeaking 3.2s cubic-bezier(0.45, 0, 0.55, 1) infinite;
+}
+
+.avatar-exact-speaking .avatar-exact-mouth-mask {
+  opacity: 0.82;
+  animation: exactMouthTalk 0.62s cubic-bezier(0.37, 0, 0.63, 1) infinite;
+}
+
+.avatar-exact-speaking .avatar-exact-mouth-mask span {
+  animation: exactMouthLine 0.62s cubic-bezier(0.37, 0, 0.63, 1) infinite;
+}
+
+.avatar-exact-error .avatar-exact-rig {
+  animation: exactError 3.8s cubic-bezier(0.45, 0, 0.55, 1) infinite;
+}
+
+.avatar-exact-listening .avatar-exact-status span {
+  background: #22c55e;
+  box-shadow: 0 0 14px rgba(34, 197, 94, 0.9);
+}
+
+.avatar-exact-thinking .avatar-exact-status span {
+  background: #f59e0b;
+  box-shadow: 0 0 14px rgba(245, 158, 11, 0.9);
+}
+
+.avatar-exact-speaking .avatar-exact-status span {
+  background: #38bdf8;
+  box-shadow: 0 0 14px rgba(56, 189, 248, 0.9);
+}
+
+.avatar-exact-error .avatar-exact-status span {
+  background: #f87171;
+  box-shadow: 0 0 14px rgba(248, 113, 113, 0.9);
+}
+
+@keyframes exactIdle {
+  0%,
+  100% {
+    transform: translateY(0) rotate(0deg);
+  }
+
+  50% {
+    transform: translate3d(0, -2px, 0) rotate(0.06deg);
+  }
+}
+
+@keyframes exactListening {
+  0%,
+  100% {
+    transform: translate3d(0, 0, 0) rotate(-0.28deg) scale(1);
+  }
+
+  50% {
+    transform: translate3d(0, -2px, 0) rotate(0.18deg) scale(1.002);
+  }
+}
+
+@keyframes exactThinking {
+  0%,
+  100% {
+    transform: translate3d(0, 0, 0) rotate(-0.42deg);
+  }
+
+  50% {
+    transform: translate3d(0, -2px, 0) rotate(0.2deg);
+  }
+}
+
+@keyframes exactSpeaking {
+  0%,
+  100% {
+    transform: translate3d(0, 0, 0) rotate(-0.08deg) scale(1);
+  }
+
+  34% {
+    transform: translate3d(0, -1.7px, 0) rotate(0.1deg) scale(1.0015);
+  }
+
+  68% {
+    transform: translate3d(0, -0.4px, 0) rotate(0deg) scale(1.0005);
+  }
+}
+
+@keyframes exactMouthTalk {
+  0%,
+  100% {
+    transform: translate(-50%, 0) scaleY(0.78);
+  }
+
+  24% {
+    transform: translate(-50%, 1.3px) scaleY(1.08);
+  }
+
+  52% {
+    transform: translate(-50%, -0.4px) scaleY(0.9);
+  }
+
+  76% {
+    transform: translate(-50%, 0.8px) scaleY(1.02);
+  }
+}
+
+@keyframes exactMouthLine {
+  0%,
+  100% {
+    height: 12%;
+    opacity: 0.4;
+  }
+
+  24% {
+    height: 26%;
+    opacity: 0.62;
+  }
+
+  52% {
+    height: 16%;
+    opacity: 0.5;
+  }
+
+  76% {
+    height: 22%;
+    opacity: 0.58;
+  }
+}
+
+@keyframes exactError {
+  0%,
+  100% {
+    transform: translateX(0);
+  }
+
+  50% {
+    transform: translate3d(1px, 0, 0);
+  }
+}
+
+@media (orientation: landscape) {
+  .avatar-exact {
+    min-height: 460px;
+    border-radius: 8px;
+  }
+
+  .avatar-exact-stage {
+    padding-top: 74px;
+    padding-bottom: 44px;
+  }
+
+  .avatar-exact-rig {
+    width: min(58%, 390px);
+    max-height: 62dvh;
+  }
+
+  .avatar-exact-caption {
+    right: 18px;
+    bottom: 18px;
+  }
+}
+
+@media (orientation: portrait) {
+  .avatar-exact {
+    min-height: 100dvh;
+    background:
+      linear-gradient(180deg, rgba(206, 225, 242, 0.2), transparent 34%, rgba(6, 10, 16, 0.62)),
+      radial-gradient(circle at 50% 50%, rgba(20, 184, 166, 0.18), transparent 28%),
+      rgba(9, 16, 25, 0.88);
+  }
+
+  .avatar-exact-screen {
+    background:
+      linear-gradient(90deg, transparent 0%, rgba(255, 255, 255, 0.08) 49.6%, rgba(255, 255, 255, 0.34) 50%, rgba(255, 255, 255, 0.08) 50.4%, transparent 100%),
+      linear-gradient(180deg, rgba(255, 255, 255, 0.1), transparent 32%);
+  }
+
+  .avatar-exact-light {
+    opacity: 0.28;
+  }
+
+  .avatar-exact-stage {
+    align-items: center;
+    padding:
+      clamp(112px, 14dvh, 150px)
+      clamp(18px, 4vw, 42px)
+      clamp(190px, 23dvh, 250px);
+  }
+
+  .avatar-exact-rig {
+    width: min(70vw, 430px);
+    max-height: 56dvh;
+  }
+
+  .avatar-exact-shadow {
+    bottom: clamp(202px, 24dvh, 260px);
+    width: min(54%, 340px);
+    height: 54px;
+    opacity: 0.72;
+  }
+
+  .avatar-exact-status {
+    top: clamp(92px, 11dvh, 120px);
+    left: clamp(18px, 3vw, 30px);
+  }
+
+  .avatar-exact-caption {
+    display: none;
+  }
+}

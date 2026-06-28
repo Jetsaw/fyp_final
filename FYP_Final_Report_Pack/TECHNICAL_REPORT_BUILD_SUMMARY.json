@@ -1,0 +1,48 @@
+{
+  "generated_at": "2026-06-23T03:48:02",
+  "docx": "C:\\Users\\jeysa\\Desktop\\Final Years\\FYP_Final_Report_Pack\\03_report_draft\\FYP_FINAL_REPORT_TECHNICAL_UI_AVATAR.docx",
+  "canonical_docx": "C:\\Users\\jeysa\\Desktop\\Final Years\\FYP_Final_Report_Pack\\03_report_draft\\FYP_FINAL_REPORT_TECHNICAL.docx",
+  "markdown": "C:\\Users\\jeysa\\Desktop\\Final Years\\FYP_Final_Report_Pack\\03_report_draft\\FYP_FINAL_REPORT_TECHNICAL.md",
+  "figures": {
+    "architecture": "C:\\Users\\jeysa\\Desktop\\Final Years\\FYP_Final_Report_Pack\\05_figures_technical\\technical_01_system_architecture.png",
+    "fine_tune": "C:\\Users\\jeysa\\Desktop\\Final Years\\FYP_Final_Report_Pack\\05_figures_technical\\technical_02_finetune_pipeline.png",
+    "rag": "C:\\Users\\jeysa\\Desktop\\Final Years\\FYP_Final_Report_Pack\\05_figures_technical\\technical_03_hybrid_rag_pipeline.png",
+    "avatar": "C:\\Users\\jeysa\\Desktop\\Final Years\\FYP_Final_Report_Pack\\05_figures_technical\\technical_04_avatar_pipeline.png",
+    "accuracy": "C:\\Users\\jeysa\\Desktop\\Final Years\\FYP_Final_Report_Pack\\05_figures_technical\\technical_05_accuracy_results.png",
+    "provider": "C:\\Users\\jeysa\\Desktop\\Final Years\\FYP_Final_Report_Pack\\05_figures_technical\\technical_06_provider_tradeoff.png",
+    "ui_landscape": "C:\\Users\\jeysa\\Desktop\\Final Years\\FYP_Final_Report_Pack\\05_figures\\figure_01_ui-refresh-landscape.png",
+    "ui_portrait": "C:\\Users\\jeysa\\Desktop\\Final Years\\FYP_Final_Report_Pack\\05_figures\\figure_02_ui-refresh-portrait.png",
+    "avatar_video_verified": "C:\\Users\\jeysa\\Desktop\\Final Years\\FYP_Final_Report_Pack\\05_figures\\figure_03_avatar-video-only-verified.png",
+    "avatar_contact_sheet": "C:\\Users\\jeysa\\Desktop\\Final Years\\FYP_Final_Report_Pack\\05_figures\\figure_18_avatar_state_contact_sheet.png"
+  },
+  "static_checks": {
+    "banned_pattern_hits": [],
+    "em_dash_count": 0,
+    "en_dash_count": 0
+  },
+  "external_sources_accessed": [
+    "https://arxiv.org/abs/2106.09685",
+    "https://unsloth.ai/docs/models/tutorials/qwen3-how-to-run-and-fine-tune",
+    "https://github.com/unslothai/unsloth",
+    "https://github.com/facebookresearch/faiss",
+    "https://research.google/pubs/reciprocal-rank-fusion-outperforms-condorcet-and-individual-rank-learning-methods/",
+    "https://github.com/sebastianstarke/AI4Animation",
+    "https://api-docs.deepseek.com/quick_start/pricing",
+    "https://developers.openai.com/api/docs/models/gpt-4o-mini",
+    "https://platform.minimax.io/docs/guides/pricing-paygo",
+    "https://github.com/karpathy/autoresearch",
+    "https://react.dev/learn/describing-the-ui",
+    "https://vite.dev/guide/",
+    "https://developer.mozilla.org/en-US/docs/Web/API/Web_Speech_API",
+    "https://github.com/hardikpandya/stop-slop",
+    "https://www.autodesk.com/products/maya/free-trial",
+    "https://github.com/blender/blender",
+    "https://github.com/mrdoob/three.js/",
+    "https://r3f.docs.pmnd.rs/getting-started/introduction"
+  ],
+  "notes": [
+    "No API key values are included in the generated report.",
+    "MiniMax is documented as a provider comparison path because no MiniMax production client was found in the searched workspace.",
+    "The verified browser and API accuracy path used the local WSL fine-tuned backend."
+  ]
+}

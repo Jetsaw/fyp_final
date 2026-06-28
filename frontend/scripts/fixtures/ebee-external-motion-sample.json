@@ -1,0 +1,62 @@
+{
+  "source": "sample-external-ai4animation-motion",
+  "frames": [
+    {
+      "id": "external-ready-000",
+      "state": "READY",
+      "time": 0,
+      "pose": {
+        "spine": [0.01, 0, 0],
+        "head": [0.02, 0.01, 0],
+        "wingL": [0.03, -0.04, 0.05],
+        "wingR": [-0.03, 0.04, -0.05]
+      }
+    },
+    {
+      "id": "external-listening-000",
+      "state": "LISTENING",
+      "time": 0.22,
+      "pose": {
+        "chest": [-0.05, 0.01, 0],
+        "neck": [0.04, 0.02, 0],
+        "head": [-0.08, 0.03, 0.01],
+        "antenna": [0, 0.01, 0.04]
+      }
+    },
+    {
+      "id": "external-thinking-000",
+      "state": "THINKING",
+      "time": 0.31,
+      "pose": {
+        "chest": [0.05, 0, 0.02],
+        "head": [0.08, -0.04, 0.08],
+        "shoulderL": [-0.02, -0.02, -0.04],
+        "shoulderR": [-0.02, 0.02, 0.04]
+      }
+    },
+    {
+      "id": "external-speaking-000",
+      "state": "SPEAKING",
+      "time": 0.18,
+      "pose": {
+        "head": [-0.03, 0.08, 0.02],
+        "shoulderR": [-0.02, 0.03, 0.22],
+        "elbowR": [0.03, -0.01, 0.2],
+        "wristR": [0.08, -0.04, 0.14],
+        "fingersR": [0.2, 0, 0.04]
+      }
+    },
+    {
+      "id": "external-review-000",
+      "state": "NEEDS_REVIEW",
+      "time": 0.15,
+      "pose": {
+        "root": [0, 0, 0.02],
+        "head": [0.1, 0, -0.09],
+        "wingL": [0.04, -0.08, 0.12],
+        "wingR": [-0.04, 0.08, -0.12],
+        "tail": [0, 0.02, -0.04]
+      }
+    }
+  ]
+}

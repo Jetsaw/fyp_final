@@ -1,0 +1,62 @@
+﻿# Secrets / local env
+.env
+.env.*
+!.env.example
+!**/.env.example
+*.pem
+*.key
+*.crt
+*.p12
+*.pfx
+credentials/
+secrets/
+.cloudflare/
+cloudflared/
+*.json.credentials
+
+# Python
+.venv/
+venv/
+env/
+__pycache__/
+*.py[cod]
+*.pyo
+.pytest_cache/
+.mypy_cache/
+.ruff_cache/
+
+# Node / frontend
+node_modules/
+dist/
+build/
+.vite/
+npm-debug.log*
+yarn-debug.log*
+yarn-error.log*
+pnpm-debug.log*
+
+# Logs / cache
+logs/
+*.log
+.cache/
+.DS_Store
+Thumbs.db
+
+# Local databases / backups
+*.sqlite-journal
+*.db-wal
+*.db-shm
+*.bak
+
+# Large model artifacts
+models/
+*.gguf
+*.safetensors
+*.bin
+*.pt
+*.pth
+*.onnx
+
+# Temporary deployment packages
+*.tar.gz
+*.zip

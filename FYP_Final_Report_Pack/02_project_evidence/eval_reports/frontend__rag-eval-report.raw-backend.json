@@ -1,0 +1,308 @@
+{
+  "baseUrl": "http://127.0.0.1:8021",
+  "total": 20,
+  "passed": 20,
+  "generatedAt": "2026-06-18T09:37:49.495Z",
+  "results": [
+    {
+      "id": "project_i_prereq",
+      "question": "What are the prerequisites for Project I?",
+      "status": 200,
+      "endpoint": "/api/chat",
+      "passed": true,
+      "missingKeywords": [],
+      "missingSources": [],
+      "ragDisabled": false,
+      "answerPreview": "ARP6110-P1 Project I requires completed 60 credit hours.",
+      "sources": [
+        "prereq_rules.json",
+        "Subject Code all - cleaned.docx"
+      ]
+    },
+    {
+      "id": "project_i_simple",
+      "question": "What is Project I?",
+      "status": 200,
+      "endpoint": "/api/chat",
+      "passed": true,
+      "missingKeywords": [],
+      "missingSources": [],
+      "ragDisabled": false,
+      "answerPreview": "ARP6110-P1 Project I requires completed 60 credit hours.",
+      "sources": [
+        "prereq_rules.json",
+        "Subject Code all - cleaned.docx"
+      ]
+    },
+    {
+      "id": "project_ii_prereq",
+      "question": "What are the prerequisites for Project II?",
+      "status": 200,
+      "endpoint": "/api/chat",
+      "passed": true,
+      "missingKeywords": [],
+      "missingSources": [],
+      "ragDisabled": false,
+      "answerPreview": "ARP6110-P2 Project II requires completed 60 credit hours and ARP6110-P1 Project I.",
+      "sources": [
+        "prereq_rules.json",
+        "Subject Code all - cleaned.docx"
+      ]
+    },
+    {
+      "id": "course_code_query",
+      "question": "Tell me about ARP6110-P1.",
+      "status": 200,
+      "endpoint": "/api/chat",
+      "passed": true,
+      "missingKeywords": [],
+      "missingSources": [],
+      "ragDisabled": false,
+      "answerPreview": "ARP6110-P1 Project I requires completed 60 credit hours.",
+      "sources": [
+        "prereq_rules.json",
+        "Subject Code all - cleaned.docx"
+      ]
+    },
+    {
+      "id": "progression_rules",
+      "question": "What should I know about progression rules?",
+      "status": 200,
+      "endpoint": "/api/chat",
+      "passed": true,
+      "missingKeywords": [],
+      "missingSources": [],
+      "ragDisabled": false,
+      "answerPreview": "Progression rules should be checked against the programme structure and prerequisite rules. For the project sequence, Project I requires completed 60 credit hours, and Project II requires both Project I and completed 60 credit hours.",
+      "sources": [
+        "programme_structure.jsonl",
+        "prereq_rules.json"
+      ]
+    },
+    {
+      "id": "robotics_year_1",
+      "question": "What courses are listed in Year 1 for Intelligent Robotics?",
+      "status": 200,
+      "endpoint": "/api/chat",
+      "passed": true,
+      "missingKeywords": [],
+      "missingSources": [],
+      "ragDisabled": false,
+      "answerPreview": "Year 1 for Intelligent Robotics includes Technical Calculus, Computer and Programming, Micro-Controllers & Microprocessors, Electrical Circuits, Basic Electronics, Differential Equations, Digital Design, Linear Algebra and Numerical Methods",
+      "sources": [
+        "programme_structure.jsonl",
+        "MMU Intelligent Robotics programme page"
+      ]
+    },
+    {
+      "id": "robotics_year_1_codes",
+      "question": "What course codes are listed in Year 1 for Intelligent Robotics?",
+      "status": 200,
+      "endpoint": "/api/chat",
+      "passed": true,
+      "missingKeywords": [],
+      "missingSources": [],
+      "ragDisabled": false,
+      "answerPreview": "Year 1 for Intelligent Robotics includes ARM6113 Technical Calculus, ARC6113 Computer and Programming, ARC6123 Micro-Controllers & Microprocessors, ARL6113 Electrical Circuits, ARE6113 Basic Electronics, ARM6123 Differential Equations, ARE6",
+      "sources": [
+        "programme_structure.jsonl",
+        "MMU Intelligent Robotics programme page"
+      ]
+    },
+    {
+      "id": "robotics_faculty",
+      "question": "Which faculty offers the Intelligent Robotics programme?",
+      "status": 200,
+      "endpoint": "/api/chat",
+      "passed": true,
+      "missingKeywords": [],
+      "missingSources": [],
+      "ragDisabled": false,
+      "answerPreview": "Bachelor of Science (Honours) in Intelligent Robotics is offered by the Faculty of Artificial Intelligence and Engineering (FAIE).",
+      "sources": [
+        "programme_structure.jsonl",
+        "MMU Intelligent Robotics programme page"
+      ]
+    },
+    {
+      "id": "robotics_accreditation",
+      "question": "What are the registration and accreditation identifiers for Intelligent Robotics?",
+      "status": 200,
+      "endpoint": "/api/chat",
+      "passed": true,
+      "missingKeywords": [],
+      "missingSources": [],
+      "ragDisabled": false,
+      "answerPreview": "The Intelligent Robotics programme lists registration R/0788/6/00177 and accreditation MQA/SWA14238.",
+      "sources": [
+        "programme_structure.jsonl",
+        "MMU Intelligent Robotics programme page"
+      ]
+    },
+    {
+      "id": "robotics_page_actions",
+      "question": "What action links are provided on the MMU Intelligent Robotics page?",
+      "status": 200,
+      "endpoint": "/api/chat",
+      "passed": true,
+      "missingKeywords": [],
+      "missingSources": [],
+      "ragDisabled": false,
+      "answerPreview": "The MMU Intelligent Robotics page provides ENQUIRE NOW, HOW TO APPLY, DOWNLOAD BROCHURE, and DOWNLOAD PROGRAMME FEES action links.",
+      "sources": [
+        "programme_structure.jsonl",
+        "MMU Intelligent Robotics programme page"
+      ]
+    },
+    {
+      "id": "robotics_dkm_bridging_note",
+      "question": "What note applies to DKM, DLKM or DVM applicants for Intelligent Robotics?",
+      "status": 200,
+      "endpoint": "/api/chat",
+      "passed": true,
+      "missingKeywords": [],
+      "missingSources": [],
+      "ragDisabled": false,
+      "answerPreview": "DKM, DLKM or DVM applicants for Intelligent Robotics may need to complete a Bridging Programme.",
+      "sources": [
+        "programme_structure.jsonl",
+        "MMU Intelligent Robotics programme page"
+      ]
+    },
+    {
+      "id": "robotics_year_2",
+      "question": "List the Year 2 Intelligent Robotics courses.",
+      "status": 200,
+      "endpoint": "/api/chat",
+      "passed": true,
+      "missingKeywords": [],
+      "missingSources": [],
+      "ragDisabled": false,
+      "answerPreview": "Year 2 for Intelligent Robotics includes Linear Systems & Signals, Electromagnetics with Applications, Electrical Machines and Power Systems, Robotics - Machine Design and Mechanisms, Introduction to Artificial Intelligence, Actuators and S",
+      "sources": [
+        "programme_structure.jsonl",
+        "MMU Intelligent Robotics programme page"
+      ]
+    },
+    {
+      "id": "robotics_year_3",
+      "question": "What courses and activities are in Year 3 for Intelligent Robotics?",
+      "status": 200,
+      "endpoint": "/api/chat",
+      "passed": true,
+      "missingKeywords": [],
+      "missingSources": [],
+      "ragDisabled": false,
+      "answerPreview": "Year 3 for Intelligent Robotics includes Mobile Robots and Drones, Project I, Project II, Industrial Training, Making Embedded Systems, Robot Programming, Elective 1 BYOC, Elective 2 BYOC, Elective 3 BYOC.",
+      "sources": [
+        "programme_structure.jsonl",
+        "MMU Intelligent Robotics programme page"
+      ]
+    },
+    {
+      "id": "robotics_industrial_training",
+      "question": "What is the prerequisite for industrial training in Intelligent Robotics?",
+      "status": 200,
+      "endpoint": "/api/chat",
+      "passed": true,
+      "missingKeywords": [],
+      "missingSources": [],
+      "ragDisabled": false,
+      "answerPreview": "Industrial Training requires completed 60 credit hours.",
+      "sources": [
+        "programme_structure.jsonl",
+        "MMU Intelligent Robotics programme page"
+      ]
+    },
+    {
+      "id": "robotics_byoc_march_recommendation",
+      "question": "What BYOC elective subjects are offered in March/April for Intelligent Robotics?",
+      "status": 200,
+      "endpoint": "/api/chat",
+      "passed": true,
+      "missingKeywords": [],
+      "missingSources": [],
+      "ragDisabled": false,
+      "answerPreview": "March/April BYOC elective subjects include Fundamentals of Marketing, Project Management, and Introductory Mobile Application Development. Want the full list?",
+      "sources": [
+        "programme_structure.jsonl",
+        "MMU Intelligent Robotics programme page"
+      ]
+    },
+    {
+      "id": "robotics_mpu",
+      "question": "What MPU or university courses are included in Intelligent Robotics?",
+      "status": 200,
+      "endpoint": "/api/chat",
+      "passed": true,
+      "missingKeywords": [],
+      "missingSources": [],
+      "ragDisabled": false,
+      "answerPreview": "University subjects include: Character Building Program: Character Building and Sustainable Society; Fundamentals of Digital Competence for Programmers; U1 - Falsafah dan Isu Semasa; U1 - Penghayatan Etika dan Peradaban Isu Semasa (local st",
+      "sources": [
+        "programme_structure.jsonl",
+        "MMU Intelligent Robotics programme page"
+      ]
+    },
+    {
+      "id": "robotics_masterplan_assessment",
+      "question": "How is ARM6113 Technical Calculus assessed?",
+      "status": 200,
+      "endpoint": "/api/chat",
+      "passed": true,
+      "missingKeywords": [],
+      "missingSources": [],
+      "ragDisabled": false,
+      "answerPreview": "Q: How is ARM6113 Technical Calculus assessed? A: Tests/Quizzes: 40%; Final Examination: 60%.",
+      "sources": [
+        "Master&Plan Intelligent Robotics subject master intelligent_robotics_qa_pairs.jsonl master_qa_pairs.clean.jsonl",
+        "MMU Intelligent Robotics programme page intelligent_robotics_qa_pairs.jsonl master_qa_pairs.clean.jsonl"
+      ]
+    },
+    {
+      "id": "robotics_masterplan_clo",
+      "question": "What is CLO 1 for ARM6113?",
+      "status": 200,
+      "endpoint": "/api/chat",
+      "passed": true,
+      "missingKeywords": [],
+      "missingSources": [],
+      "ragDisabled": false,
+      "answerPreview": "Q: What is CLO 1 for ARM6113? A: CLO 1 for ARM6113 Technical Calculus: Compute the limits, derivatives, integrals and extrema of single-variable functions.",
+      "sources": [
+        "Master&Plan Intelligent Robotics subject master intelligent_robotics_qa_pairs.jsonl master_qa_pairs.clean.jsonl",
+        "MMU Intelligent Robotics programme page intelligent_robotics_qa_pairs.jsonl master_qa_pairs.clean.jsonl"
+      ]
+    },
+    {
+      "id": "robotics_masterplan_alias",
+      "question": "What canonical subject does alias code MID6113 map to?",
+      "status": 200,
+      "endpoint": "/api/chat",
+      "passed": true,
+      "missingKeywords": [],
+      "missingSources": [],
+      "ragDisabled": false,
+      "answerPreview": "Alias code MID6113 maps to MMD6123 Digital Fabrication and Prototyping.",
+      "sources": [
+        "intelligent_robotics_qa_pairs.jsonl",
+        "Master&Plan Intelligent Robotics subject master"
+      ]
+    },
+    {
+      "id": "robotics_masterplan_topics",
+      "question": "What topics are covered in ARL6113 Electrical Circuits?",
+      "status": 200,
+      "endpoint": "/api/chat",
+      "passed": true,
+      "missingKeywords": [],
+      "missingSources": [],
+      "ragDisabled": false,
+      "answerPreview": "Q: What topics are covered in ARL6113 Electrical Circuits? A: Course contents for ARL6113 Electrical Circuits: Circuit elements and signal waveforms; Basic laws of electric circuit; Network analysis; Sinusoidal steady state analysis; Transi",
+      "sources": [
+        "Master&Plan Intelligent Robotics subject master intelligent_robotics_qa_pairs.jsonl master_qa_pairs.clean.jsonl",
+        "MMU Intelligent Robotics programme page intelligent_robotics_qa_pairs.jsonl master_qa_pairs.clean.jsonl"
+      ]
+    }
+  ]
+}

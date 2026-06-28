@@ -1,0 +1,46 @@
+{
+  "base_url": "http://127.0.0.1:8000",
+  "threshold": 0.6,
+  "generated_at": "2026-06-28T12:53:43Z",
+  "reports": [
+    {
+      "name": "master_accuracy_first_1000",
+      "input_file": "C:\\Users\\jeysa\\Desktop\\Final Years\\hybride serch master file\\clean_data\\eval\\master_qa_accuracy_1500.jsonl",
+      "limit": 1000,
+      "threshold": 0.6,
+      "total": 1000,
+      "passed": 1000,
+      "failed": 0,
+      "accuracy": 1.0,
+      "average_overlap": 1.0,
+      "minimum_overlap": 1.0,
+      "duration_seconds": 12.63
+    },
+    {
+      "name": "beginner_general_500",
+      "input_file": "C:\\Users\\jeysa\\Desktop\\Final Years\\hybride serch master file\\clean_data\\eval\\beginner_general_questions_500.jsonl",
+      "limit": 500,
+      "threshold": 0.6,
+      "total": 500,
+      "passed": 500,
+      "failed": 0,
+      "accuracy": 1.0,
+      "average_overlap": 1.0,
+      "minimum_overlap": 1.0,
+      "duration_seconds": 5.46
+    },
+    {
+      "name": "mixed_regression_1500",
+      "input_file": "C:\\Users\\jeysa\\Desktop\\Final Years\\hybride serch master file\\clean_data\\eval\\mixed_regression_questions_1500.jsonl",
+      "limit": 1500,
+      "threshold": 0.6,
+      "total": 1500,
+      "passed": 1500,
+      "failed": 0,
+      "accuracy": 1.0,
+      "average_overlap": 1.0,
+      "minimum_overlap": 1.0,
+      "duration_seconds": 17.03
+    }
+  ]
+}

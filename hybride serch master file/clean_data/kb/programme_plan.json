@@ -1,0 +1,41 @@
+{
+  "Intelligent Robotics": {
+    "Year1": [
+      "ARM6113",
+      "ARC6113",
+      "ARC6123",
+      "ARL6113",
+      "ARE6113",
+      "ARM6123",
+      "ARE6123",
+      "ARM6133",
+      "MID6113",
+      "ARE6133"
+    ],
+    "Year2": [
+      "ARL6143",
+      "ARL6134",
+      "ARL6123",
+      "ARR6123",
+      "ARA6113",
+      "ARR6133",
+      "ARC6133",
+      "ARR6143",
+      "ARC6144",
+      "ARC6173",
+      "ARA6123",
+      "ARA6144"
+    ],
+    "Year3": [
+      "ARR6153",
+      "ARP6110-P1",
+      "ARP6110-P2",
+      "ART6116",
+      "ARC6184",
+      "ARR6163",
+      "BYOC-1",
+      "BYOC-2",
+      "BYOC-3"
+    ]
+  }
+}

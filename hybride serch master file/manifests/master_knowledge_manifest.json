@@ -1,0 +1,31 @@
+{
+  "generated_at": "2026-06-18T09:34:28.281326+00:00",
+  "master_root": "C:\\Users\\jeysa\\Desktop\\Final Years\\hybride serch master file",
+  "backend_root": "C:\\Users\\jeysa\\Desktop\\Final Years\\hive-backend",
+  "arranged_raw_sources": [],
+  "sync": {
+    "kb_files_copied_to_master": 14,
+    "global_docs_copied_to_master": 11,
+    "raw_sources_copied_to_master_global_docs": 8,
+    "raw_sources_copied_to_backend_global_docs": 8
+  },
+  "master_qa": {
+    "target": "C:\\Users\\jeysa\\Desktop\\Final Years\\hybride serch master file\\clean_data\\master_qa\\master_qa_pairs.clean.jsonl",
+    "backend_target": "C:\\Users\\jeysa\\Desktop\\Final Years\\hive-backend\\data\\kb\\master_qa_pairs.clean.jsonl",
+    "records": 2151,
+    "source_files": [
+      "C:\\Users\\jeysa\\Desktop\\Final Years\\hive-backend\\data\\kb\\intelligent_robotics_qa_pairs.jsonl",
+      "C:\\Users\\jeysa\\Desktop\\Final Years\\hive-backend\\data\\kb\\hive_course_qa_pairs.jsonl",
+      "C:\\Users\\jeysa\\Desktop\\Final Years\\hive-backend\\data\\kb\\programme_structure.jsonl",
+      "C:\\Users\\jeysa\\Desktop\\Final Years\\hive-backend\\data\\global_docs\\faie_full_qa.jsonl"
+    ]
+  },
+  "removed_generated_indexes": [
+    "C:\\Users\\jeysa\\Desktop\\Final Years\\hive-backend\\data\\indexes\\global\\details_index.faiss",
+    "C:\\Users\\jeysa\\Desktop\\Final Years\\hive-backend\\data\\indexes\\global\\details_meta.jsonl",
+    "C:\\Users\\jeysa\\Desktop\\Final Years\\hive-backend\\data\\indexes\\global\\index.faiss",
+    "C:\\Users\\jeysa\\Desktop\\Final Years\\hive-backend\\data\\indexes\\global\\meta.jsonl",
+    "C:\\Users\\jeysa\\Desktop\\Final Years\\hive-backend\\data\\indexes\\global\\structure_index.faiss",
+    "C:\\Users\\jeysa\\Desktop\\Final Years\\hive-backend\\data\\indexes\\global\\structure_meta.jsonl"
+  ]
+}

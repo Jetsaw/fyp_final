@@ -1,0 +1,6 @@
+{
+  "git_root": "C:/Users/jeysa",
+  "scoped_status": "?? ./",
+  "remote": "origin\thttps://github.com/Jetsaw/Kommu_Ai_ChatBot.git (fetch)\norigin\thttps://github.com/Jetsaw/Kommu_Ai_ChatBot.git (push)",
+  "log": "9a90c65 (HEAD -> main, origin/main, claude/sweet-mayer) update .gitignore to ignore sessions.db and website_data.json\n541be7e Restructure repo: flatten folder structure\na9f0132 Cleaned repo: removed unused files, added greeting disclaimer, LA escalation, session_state logging"
+}

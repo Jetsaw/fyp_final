@@ -1,0 +1,23 @@
+{
+  "output_file": "C:\\Users\\jeysa\\Desktop\\Final Years\\hybride serch master file\\clean_data\\eval\\master_qa_accuracy_1500.jsonl",
+  "record_count": 1500,
+  "style_counts": {
+    "formal": 500,
+    "casual": 500,
+    "typo": 500
+  },
+  "category_counts": {
+    "course_credit_hours": 420,
+    "course_relationship": 540,
+    "website_fact": 300,
+    "entry_requirement": 60,
+    "website_link": 9,
+    "course_detail": 171
+  },
+  "source_files": [
+    "C:\\Users\\jeysa\\Desktop\\Final Years\\hybride serch master file\\clean_data\\kb\\master_qa_pairs.clean.jsonl",
+    "C:\\Users\\jeysa\\Desktop\\Final Years\\hybride serch master file\\clean_data\\kb\\course_knowledge.generated.json",
+    "C:\\Users\\jeysa\\Desktop\\Final Years\\hybride serch master file\\clean_data\\kb\\intelligent_robotics_source_facts.json"
+  ],
+  "source_url": "https://www.mmu.edu.my/programmes-by-faculty-all/programmes-by-faculty-faie/bachelor-of-science-hons-in-intelligent-robotics/"
+}

@@ -1,0 +1,181 @@
+{
+  "schema": "ai4animation-motion-export/v1",
+  "source": "sample-ai4animation-ebee-export",
+  "clips": [
+    {
+      "name": "ai4a-ready",
+      "state": "READY",
+      "frames": [
+        {
+          "time": 0,
+          "controls": {
+            "facing": 0,
+            "energy": 0.42,
+            "gesture": 0.25,
+            "attention": 0.45,
+            "step": 0.06
+          },
+          "localPhases": {
+            "spine": { "sin": 0.1, "cos": 0.99, "amplitude": 0.45 },
+            "head": { "sin": 0.04, "cos": 1, "amplitude": 0.26 },
+            "arms": { "sin": 0.08, "cos": 0.99, "amplitude": 0.16 },
+            "legs": { "sin": 0.02, "cos": 1, "amplitude": 0.1 },
+            "wings": { "sin": 0.14, "cos": 0.98, "amplitude": 0.38 },
+            "tail": { "sin": 0.05, "cos": 1, "amplitude": 0.2 }
+          },
+          "trajectory": [
+            { "time": -0.25, "position": [0, 0], "direction": [0, 1] },
+            { "time": 0, "position": [0, 0], "direction": [0, 1] },
+            { "time": 0.35, "position": [0.01, 0.08], "direction": [0.02, 1] },
+            { "time": 0.7, "position": [0.02, 0.16], "direction": [0.03, 1] },
+            { "time": 1.05, "position": [0.03, 0.24], "direction": [0.04, 0.99] }
+          ],
+          "joints": {
+            "spine": [0.01, 0, 0],
+            "head": [0.02, 0.01, 0],
+            "wingL": [0.03, -0.04, 0.05],
+            "wingR": [-0.03, 0.04, -0.05]
+          },
+          "nodePose": {
+            "Group/Main/FitSkeleton/Root/Spine1/Chest/Neck/Head": [0.02, 0.01, 0],
+            "Group/Main/MotionSystem/FKSystem/FKParentConstraintToChest_M/FKOffsetwing1_L/FKExtrawing1_L/FKwing1_L/FKXwing1_L": [0.03, -0.04, 0.05]
+          }
+        }
+      ]
+    },
+    {
+      "name": "ai4a-listening",
+      "state": "LISTENING",
+      "frames": [
+        {
+          "time": 0.22,
+          "controls": {
+            "facing": -0.08,
+            "energy": 0.74,
+            "gesture": 0.42,
+            "attention": 0.98,
+            "step": 0.08
+          },
+          "trajectory": [
+            { "time": -0.25, "position": [-0.01, 0], "direction": [-0.04, 1] },
+            { "time": 0, "position": [-0.01, 0], "direction": [-0.04, 1] },
+            { "time": 0.35, "position": [-0.02, 0.1], "direction": [-0.06, 1] },
+            { "time": 0.7, "position": [-0.04, 0.2], "direction": [-0.08, 1] },
+            { "time": 1.05, "position": [-0.05, 0.3], "direction": [-0.1, 0.99] }
+          ],
+          "joints": {
+            "chest": [-0.05, 0.01, 0],
+            "neck": [0.04, 0.02, 0],
+            "head": [-0.08, 0.03, 0.01],
+            "antenna": [0, 0.01, 0.04]
+          },
+          "nodePose": {
+            "Group/Main/FitSkeleton/Root/Spine1/Chest/Neck/Head": [-0.08, 0.03, 0.01],
+            "Group/Main/MotionSystem/FKSystem/FKParentConstraintToChest_M/FKOffsetwing1_L/FKExtrawing1_L/FKwing1_L/FKXwing1_L": [0.02, -0.03, 0.04]
+          }
+        }
+      ]
+    },
+    {
+      "name": "ai4a-thinking",
+      "state": "THINKING",
+      "frames": [
+        {
+          "time": 0.31,
+          "controls": {
+            "facing": 0.12,
+            "energy": 0.48,
+            "gesture": 0.22,
+            "attention": 0.84,
+            "step": 0.04
+          },
+          "trajectory": [
+            { "time": -0.25, "position": [0.02, 0], "direction": [0.06, 1] },
+            { "time": 0, "position": [0.02, 0], "direction": [0.06, 1] },
+            { "time": 0.35, "position": [0.03, 0.07], "direction": [0.08, 1] },
+            { "time": 0.7, "position": [0.06, 0.14], "direction": [0.1, 0.99] },
+            { "time": 1.05, "position": [0.08, 0.21], "direction": [0.12, 0.99] }
+          ],
+          "joints": {
+            "chest": [0.05, 0, 0.02],
+            "head": [0.08, -0.04, 0.08],
+            "shoulderL": [-0.02, -0.02, -0.04],
+            "shoulderR": [-0.02, 0.02, 0.04]
+          },
+          "nodePose": {
+            "Group/Main/FitSkeleton/Root/Spine1/Chest/Neck/Head": [0.08, -0.04, 0.08],
+            "Group/Main/MotionSystem/FKSystem/FKParentConstraintToRoot_M/FKOffsettail1_M/FKExtratail1_M/FKtail1_M/FKXtail1_M": [0, 0.02, -0.03]
+          }
+        }
+      ]
+    },
+    {
+      "name": "ai4a-speaking",
+      "state": "SPEAKING",
+      "frames": [
+        {
+          "time": 0.18,
+          "controls": {
+            "facing": 0.32,
+            "energy": 1,
+            "gesture": 1,
+            "attention": 0.86,
+            "step": 0.36
+          },
+          "trajectory": [
+            { "time": -0.25, "position": [0.05, 0], "direction": [0.16, 0.99] },
+            { "time": 0, "position": [0.06, 0], "direction": [0.18, 0.98] },
+            { "time": 0.35, "position": [0.11, 0.11], "direction": [0.2, 0.98] },
+            { "time": 0.7, "position": [0.16, 0.22], "direction": [0.23, 0.97] },
+            { "time": 1.05, "position": [0.22, 0.33], "direction": [0.25, 0.97] }
+          ],
+          "joints": {
+            "head": [-0.03, 0.08, 0.02],
+            "shoulderR": [-0.02, 0.03, 0.22],
+            "elbowR": [0.03, -0.01, 0.2],
+            "wristR": [0.08, -0.04, 0.14],
+            "fingersR": [0.2, 0, 0.04]
+          },
+          "nodePose": {
+            "Group/Main/FitSkeleton/Root/Spine1/Chest/Neck/Head": [-0.03, 0.08, 0.02],
+            "Group/Main/MotionSystem/FKSystem/FKParentConstraintToScapula_R/FKOffsetShoulder_R/FKExtraShoulder_R/FKShoulder_R/FKXShoulder_R/FKOffsetElbow_R/FKExtraElbow_R/FKElbow_R/FKXElbow_R/FKOffsetWrist_R/FKExtraWrist_R/FKWrist_R/FKXWrist_R": [0.08, -0.04, 0.14]
+          }
+        }
+      ]
+    },
+    {
+      "name": "ai4a-review",
+      "state": "NEEDS_REVIEW",
+      "frames": [
+        {
+          "time": 0.15,
+          "controls": {
+            "facing": 0,
+            "energy": 0.74,
+            "gesture": 0.45,
+            "attention": 0.95,
+            "step": 0.08
+          },
+          "trajectory": [
+            { "time": -0.25, "position": [0, 0], "direction": [0, 1] },
+            { "time": 0, "position": [0, 0], "direction": [0, 1] },
+            { "time": 0.35, "position": [0.02, 0.08], "direction": [0.03, 1] },
+            { "time": 0.7, "position": [0.02, 0.15], "direction": [0.02, 1] },
+            { "time": 1.05, "position": [0.01, 0.22], "direction": [0.01, 1] }
+          ],
+          "joints": {
+            "root": [0, 0, 0.02],
+            "head": [0.1, 0, -0.09],
+            "wingL": [0.04, -0.08, 0.12],
+            "wingR": [-0.04, 0.08, -0.12],
+            "tail": [0, 0.02, -0.04]
+          },
+          "nodePose": {
+            "Group/Main/FitSkeleton/Root/Spine1/Chest/Neck/Head": [0.1, 0, -0.09],
+            "Group/Main/MotionSystem/FKSystem/FKParentConstraintToRoot_M/FKOffsettail1_M/FKExtratail1_M/FKtail1_M/FKXtail1_M": [0, 0.02, -0.04]
+          }
+        }
+      ]
+    }
+  ]
+}

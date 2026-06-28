@@ -1,0 +1,31 @@
+{
+  "output_file": "C:\\Users\\jeysa\\Desktop\\Final Years\\hybride serch master file\\clean_data\\eval\\beginner_general_questions_500.jsonl",
+  "record_count": 500,
+  "category_counts": {
+    "beginner_overview": 20,
+    "duration_and_years": 20,
+    "course_structure_by_year": 148,
+    "careers_and_jobs": 82,
+    "byoc_electives": 116,
+    "credit_hours_and_progression": 14,
+    "entry_requirements": 24,
+    "skills_and_subjects": 44,
+    "university_subjects": 8,
+    "application_and_support": 14,
+    "beginner_decision_support": 10
+  },
+  "audience": "zero_knowledge_beginner",
+  "source_files": [
+    "C:\\Users\\jeysa\\Desktop\\Final Years\\hybride serch master file\\clean_data\\kb\\intelligent_robotics_source_facts.json",
+    "C:\\Users\\jeysa\\Desktop\\Final Years\\hybride serch master file\\clean_data\\kb\\course_knowledge.generated.json"
+  ],
+  "web_research_sources": [
+    "https://www.mmu.edu.my/programmes-by-faculty-all/programmes-by-faculty-faie/bachelor-of-science-hons-in-intelligent-robotics/",
+    "https://byoc.mmu.edu.my/",
+    "https://byoc.mmu.edu.my/how-to-check-eligibility/",
+    "https://byoc.mmu.edu.my/byoc_courses/",
+    "https://nationalcareers.service.gov.uk/job-profiles/robotics-engineer",
+    "https://graduate.northeastern.edu/knowledge-hub/robotics-careers-what-can-i-do-with-an-ms-in-robotics/",
+    "https://www.cmich.edu/blog/all-things-higher-ed/20-questions-to-ask-when-choosing-a-college"
+  ]
+}

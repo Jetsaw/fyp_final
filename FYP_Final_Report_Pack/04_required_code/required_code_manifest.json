@@ -1,0 +1,191 @@
+[
+  {
+    "source": "frontend/src/App.tsx",
+    "copy": "04_required_code\\frontend__src__App.tsx",
+    "copied": true,
+    "lines": 1041,
+    "bytes": 30594
+  },
+  {
+    "source": "frontend/src/components/AvatarExact.tsx",
+    "copy": "04_required_code\\frontend__src__components__AvatarExact.tsx",
+    "copied": true,
+    "lines": 410,
+    "bytes": 14607
+  },
+  {
+    "source": "frontend/src/components/AvatarExact.css",
+    "copy": "04_required_code\\frontend__src__components__AvatarExact.css",
+    "copied": true,
+    "lines": 431,
+    "bytes": 9254
+  },
+  {
+    "source": "frontend/src/courseKnowledge.ts",
+    "copy": "04_required_code\\frontend__src__courseKnowledge.ts",
+    "copied": true,
+    "lines": 201,
+    "bytes": 6614
+  },
+  {
+    "source": "frontend/src/courseKnowledgeData.ts",
+    "copy": "04_required_code\\frontend__src__courseKnowledgeData.ts",
+    "copied": true,
+    "lines": 129,
+    "bytes": 4473
+  },
+  {
+    "source": "frontend/src/main.tsx",
+    "copy": "04_required_code\\frontend__src__main.tsx",
+    "copied": true,
+    "lines": 11,
+    "bytes": 230
+  },
+  {
+    "source": "frontend/scripts/evaluate-rag-accuracy.mjs",
+    "copy": "04_required_code\\frontend__scripts__evaluate-rag-accuracy.mjs",
+    "copied": true,
+    "lines": 308,
+    "bytes": 10140
+  },
+  {
+    "source": "frontend/scripts/evaluate-all-qa-pairs.mjs",
+    "copy": "04_required_code\\frontend__scripts__evaluate-all-qa-pairs.mjs",
+    "copied": true,
+    "lines": 144,
+    "bytes": 4620
+  },
+  {
+    "source": "frontend/scripts/check-kiosk-readiness.mjs",
+    "copy": "04_required_code\\frontend__scripts__check-kiosk-readiness.mjs",
+    "copied": true,
+    "lines": 51,
+    "bytes": 1408
+  },
+  {
+    "source": "frontend/scripts/check-stop-slop-output.mjs",
+    "copy": "04_required_code\\frontend__scripts__check-stop-slop-output.mjs",
+    "copied": true,
+    "lines": 65,
+    "bytes": 2085
+  },
+  {
+    "source": "frontend/scripts/generate-course-knowledge.mjs",
+    "copy": "04_required_code\\frontend__scripts__generate-course-knowledge.mjs",
+    "copied": true,
+    "lines": 159,
+    "bytes": 4403
+  },
+  {
+    "source": "frontend/package.json",
+    "copy": "04_required_code\\frontend__package.json",
+    "copied": true,
+    "lines": 49,
+    "bytes": 2353
+  },
+  {
+    "source": "frontend/vite.config.ts",
+    "copy": "04_required_code\\frontend__vite.config.ts",
+    "copied": true,
+    "lines": 22,
+    "bytes": 495
+  },
+  {
+    "source": "hive-backend/app/main.py",
+    "copy": "04_required_code\\hive-backend__app__main.py",
+    "copied": true,
+    "lines": 61,
+    "bytes": 1922
+  },
+  {
+    "source": "hive-backend/app/api/chat.py",
+    "copy": "04_required_code\\hive-backend__app__api__chat.py",
+    "copied": true,
+    "lines": 439,
+    "bytes": 15956
+  },
+  {
+    "source": "hive-backend/app/api/health.py",
+    "copy": "04_required_code\\hive-backend__app__api__health.py",
+    "copied": true,
+    "lines": 8,
+    "bytes": 125
+  },
+  {
+    "source": "hive-backend/app/rag/course_guard.py",
+    "copy": "04_required_code\\hive-backend__app__rag__course_guard.py",
+    "copied": true,
+    "lines": 297,
+    "bytes": 11471
+  },
+  {
+    "source": "hive-backend/app/rag/hybrid_search.py",
+    "copy": "04_required_code\\hive-backend__app__rag__hybrid_search.py",
+    "copied": true,
+    "lines": 190,
+    "bytes": 6709
+  },
+  {
+    "source": "hive-backend/app/rag/query_router.py",
+    "copy": "04_required_code\\hive-backend__app__rag__query_router.py",
+    "copied": true,
+    "lines": 345,
+    "bytes": 11432
+  },
+  {
+    "source": "hive-backend/app/rag/reranker.py",
+    "copy": "04_required_code\\hive-backend__app__rag__reranker.py",
+    "copied": true,
+    "lines": 96,
+    "bytes": 2739
+  },
+  {
+    "source": "hive-backend/app/rag/indexer.py",
+    "copy": "04_required_code\\hive-backend__app__rag__indexer.py",
+    "copied": true,
+    "lines": 267,
+    "bytes": 9464
+  },
+  {
+    "source": "hive-backend/app/advisor/engine.py",
+    "copy": "04_required_code\\hive-backend__app__advisor__engine.py",
+    "copied": true,
+    "lines": 275,
+    "bytes": 9399
+  },
+  {
+    "source": "hive-backend/app/advisor/alias_resolver.py",
+    "copy": "04_required_code\\hive-backend__app__advisor__alias_resolver.py",
+    "copied": true,
+    "lines": 178,
+    "bytes": 5576
+  },
+  {
+    "source": "hive-backend/app/advisor/programme_detection.py",
+    "copy": "04_required_code\\hive-backend__app__advisor__programme_detection.py",
+    "copied": true,
+    "lines": 303,
+    "bytes": 11094
+  },
+  {
+    "source": "hive-backend/scripts/rebuild_intelligent_robotics_rag.py",
+    "copy": "04_required_code\\hive-backend__scripts__rebuild_intelligent_robotics_rag.py",
+    "copied": true,
+    "lines": 1082,
+    "bytes": 55546
+  },
+  {
+    "source": "hive-backend/rebuild_indices.py",
+    "copy": "04_required_code\\hive-backend__rebuild_indices.py",
+    "copied": true,
+    "lines": 54,
+    "bytes": 1888
+  },
+  {
+    "source": "hive-backend/requirements.txt",
+    "copy": "04_required_code\\hive-backend__requirements.txt",
+    "copied": true,
+    "lines": 24,
+    "bytes": 352
+  }
+]

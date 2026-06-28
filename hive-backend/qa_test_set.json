@@ -1,0 +1,152 @@
+[
+  {
+    "id": "AAC6213-07",
+    "course_code": "AAC6213",
+    "course_name": "Algorithms and Data Structures for AI",
+    "question": "How many contact hours does AAC6213 have?",
+    "answer": "Contact hours are not specified in the provided outline.",
+    "tags": [
+      "contact_hours"
+    ]
+  },
+  {
+    "id": "AAE6113-01",
+    "course_code": "AAE6113",
+    "course_name": "Applied Electronics and Practical Techniques",
+    "question": "What is AAE6113 (Applied Electronics and Practical Techniques) about?",
+    "answer": "Electronic components, circuit design, laboratory tools, and PCB design with hands-on practice.",
+    "tags": [
+      "overview"
+    ]
+  },
+  {
+    "id": "ARE6113-08",
+    "course_code": "ARE6113",
+    "course_name": "Basic Electronics",
+    "question": "Which programme(s) typically use ARE6113?",
+    "answer": "ARE6113 is used in: Intelligent Robotics.",
+    "tags": [
+      "programme_routing"
+    ]
+  },
+  {
+    "id": "ARE6123-01",
+    "course_code": "ARE6123",
+    "course_name": "Digital Design",
+    "question": "What is ARE6123 (Digital Design) about?",
+    "answer": "Digital logic fundamentals including number systems, Boolean algebra, combinational and sequential logic, and digital system design.",
+    "tags": [
+      "overview"
+    ]
+  },
+  {
+    "id": "AAE6153-02",
+    "course_code": "AAE6153",
+    "course_name": "Robotics and Perceptions",
+    "question": "What is the pre-requisite for AAE6153?",
+    "answer": "Pre-requisite: None",
+    "tags": [
+      "prerequisite"
+    ]
+  },
+  {
+    "id": "AAE6153-06",
+    "course_code": "AAE6153",
+    "course_name": "Robotics and Perceptions",
+    "question": "Does AAE6153 have lab work?",
+    "answer": "Lab/practical details are not specified in the provided outline (or may be included under tutorials/lab assessments).",
+    "tags": [
+      "lab"
+    ]
+  },
+  {
+    "id": "AAE6153-05",
+    "course_code": "AAE6153",
+    "course_name": "Robotics and Perceptions",
+    "question": "What topics are covered in AAE6153?",
+    "answer": "Key topics include: Robotic systems, sensing, kinematics, control, and probabilistic robot software concepts.",
+    "tags": [
+      "topics"
+    ]
+  },
+  {
+    "id": "AAC6223-08",
+    "course_code": "AAC6223",
+    "course_name": "Data Analytics Fundamentals",
+    "question": "Which programme(s) typically use AAC6223?",
+    "answer": "AAC6223 is used in: Applied AI.",
+    "tags": [
+      "programme_routing"
+    ]
+  },
+  {
+    "id": "AAE6134-06",
+    "course_code": "AAE6134",
+    "course_name": "Machine Vision and Image Processing",
+    "question": "Does AAE6134 have lab work?",
+    "answer": "Lab/practical details are not specified in the provided outline (or may be included under tutorials/lab assessments).",
+    "tags": [
+      "lab"
+    ]
+  },
+  {
+    "id": "ARM6123-03",
+    "course_code": "ARM6123",
+    "course_name": "Differential Equations",
+    "question": "How many credit hours is ARM6123?",
+    "answer": "ARM6123 carries 3 credit hour(s).",
+    "tags": [
+      "credit_hours"
+    ]
+  },
+  {
+    "id": "ARM6123-04",
+    "course_code": "ARM6123",
+    "course_name": "Differential Equations",
+    "question": "How is ARM6123 assessed?",
+    "answer": "Assessment: Refer to course outline.",
+    "tags": [
+      "assessment"
+    ]
+  },
+  {
+    "id": "MID6113-03",
+    "course_code": "MID6113",
+    "course_name": "Rapid Modelling",
+    "question": "How many credit hours is MID6113?",
+    "answer": "MID6113 carries 3 credit hour(s).",
+    "tags": [
+      "credit_hours"
+    ]
+  },
+  {
+    "id": "ARE6133-04",
+    "course_code": "ARE6133",
+    "course_name": "Analog Electronics",
+    "question": "How is ARE6133 assessed?",
+    "answer": "Assessment: Refer to course outline.",
+    "tags": [
+      "assessment"
+    ]
+  },
+  {
+    "id": "ARE6123-05",
+    "course_code": "ARE6123",
+    "course_name": "Digital Design",
+    "question": "What topics are covered in ARE6123?",
+    "answer": "Key topics include: Digital logic fundamentals including number systems, Boolean algebra, combinational and sequential logic, and digital system design.",
+    "tags": [
+      "topics"
+    ]
+  },
+  {
+    "id": "AAP6126-07",
+    "course_code": "AAP6126",
+    "course_name": "Industrial Training",
+    "question": "How many contact hours does AAP6126 have?",
+    "answer": "Contact hours are not specified in the provided outline.",
+    "tags": [
+      "contact_hours"
+    ]
+  }
+]

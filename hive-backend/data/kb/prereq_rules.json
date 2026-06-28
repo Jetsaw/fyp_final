@@ -1,0 +1,64 @@
+{
+  "ARA6113": {
+    "title": "Introduction to Artificial Intelligence",
+    "prerequisites": [
+      "ARC6113 Computer and Programming"
+    ]
+  },
+  "ARA6123": {
+    "title": "Machine Learning Concepts and Technologies",
+    "prerequisites": [
+      "ARC6113 Computer and Programming"
+    ]
+  },
+  "ARC6184": {
+    "title": "Making Embedded Systems",
+    "prerequisites": [
+      "ARC6123 Micro-Controllers & Microprocessors"
+    ]
+  },
+  "ARL6143": {
+    "title": "Linear Systems & Signals",
+    "prerequisites": [
+      "ARL6113 Electrical Circuits"
+    ]
+  },
+  "ARM6123": {
+    "title": "Differential Equations",
+    "prerequisites": [
+      "ARM6113 Technical Calculus"
+    ]
+  },
+  "ARP6110-P1": {
+    "title": "Project I",
+    "prerequisites": [
+      "Completed 60 credit hours"
+    ]
+  },
+  "ARP6110-P2": {
+    "title": "Project II",
+    "prerequisites": [
+      "Completed 60 credit hours",
+      "ARP6110-P1 Project I"
+    ]
+  },
+  "ARR6153": {
+    "title": "Mobile Robots and Drones",
+    "prerequisites": [
+      "ARC6123 Micro-Controllers & Microprocessors",
+      "ARR6123 Robotics - Machine Design and Mechanisms"
+    ]
+  },
+  "ARR6163": {
+    "title": "Robot Programming",
+    "prerequisites": [
+      "ARC6113 Computer and Programming"
+    ]
+  },
+  "ART6116": {
+    "title": "Industrial Training",
+    "prerequisites": [
+      "Completed 60 credit hours"
+    ]
+  }
+}

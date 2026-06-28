@@ -1,0 +1,8 @@
+tunnel: YOUR_TUNNEL_ID
+credentials-file: /Users/YOUR_MAC_USER/.cloudflared/YOUR_TUNNEL_ID.json
+
+ingress:
+  - hostname: hive.yourdomain.com
+    service: http://localhost:8080
+  - service: http_status:404
+

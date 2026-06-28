@@ -1,0 +1,34 @@
+{
+  "output_file": "C:\\Users\\jeysa\\Desktop\\Final Years\\hybride serch master file\\clean_data\\eval\\mixed_regression_questions_1500.jsonl",
+  "record_count": 1500,
+  "mix": {
+    "master_qa_accuracy_1500.jsonl": 1000,
+    "beginner_general_questions_500.jsonl": 500
+  },
+  "category_counts": {
+    "course_credit_hours": 420,
+    "beginner_overview": 20,
+    "duration_and_years": 20,
+    "course_structure_by_year": 148,
+    "careers_and_jobs": 82,
+    "byoc_electives": 116,
+    "credit_hours_and_progression": 14,
+    "entry_requirements": 24,
+    "course_relationship": 540,
+    "skills_and_subjects": 44,
+    "university_subjects": 8,
+    "application_and_support": 14,
+    "beginner_decision_support": 10,
+    "website_fact": 40
+  },
+  "style_counts": {
+    "formal": 334,
+    "casual": 333,
+    "none": 500,
+    "typo": 333
+  },
+  "source_files": [
+    "C:\\Users\\jeysa\\Desktop\\Final Years\\hybride serch master file\\clean_data\\eval\\master_qa_accuracy_1500.jsonl",
+    "C:\\Users\\jeysa\\Desktop\\Final Years\\hybride serch master file\\clean_data\\eval\\beginner_general_questions_500.jsonl"
+  ]
+}

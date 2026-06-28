@@ -1,0 +1,327 @@
+{
+  "schema": "hive-ebee-avatar-package/v1",
+  "name": "Ebee",
+  "generatedBy": "scripts/export-ebee-avatar-manifest.mjs",
+  "model": {
+    "path": "ebee_new.fbx",
+    "bytes": 9763680,
+    "format": "fbx"
+  },
+  "textures": [
+    {
+      "path": "sourceimages/Body_dif.png",
+      "bytes": 486342
+    },
+    {
+      "path": "sourceimages/Body_met.png",
+      "bytes": 24840
+    },
+    {
+      "path": "sourceimages/Body_nor.png",
+      "bytes": 7212721
+    },
+    {
+      "path": "sourceimages/Body_rou.png",
+      "bytes": 2475109
+    },
+    {
+      "path": "sourceimages/BtmArmor_dif.png",
+      "bytes": 4864045
+    },
+    {
+      "path": "sourceimages/BtmArmor_met.png",
+      "bytes": 1146258
+    },
+    {
+      "path": "sourceimages/BtmArmor_nor.png",
+      "bytes": 7847536
+    },
+    {
+      "path": "sourceimages/BtmArmor_rou.png",
+      "bytes": 2291232
+    },
+    {
+      "path": "sourceimages/Butt_dif.png",
+      "bytes": 2013192
+    },
+    {
+      "path": "sourceimages/Butt_met.png",
+      "bytes": 703042
+    },
+    {
+      "path": "sourceimages/Butt_nor.png",
+      "bytes": 10176501
+    },
+    {
+      "path": "sourceimages/Butt_rou.png",
+      "bytes": 2692837
+    },
+    {
+      "path": "sourceimages/Eyegreen.jpg",
+      "bytes": 33999
+    },
+    {
+      "path": "sourceimages/Face01_dif.png",
+      "bytes": 1296476
+    },
+    {
+      "path": "sourceimages/Face_dif.png",
+      "bytes": 1900117
+    },
+    {
+      "path": "sourceimages/Hand_dif.png",
+      "bytes": 2096347
+    },
+    {
+      "path": "sourceimages/Hand_met.png",
+      "bytes": 746012
+    },
+    {
+      "path": "sourceimages/Hand_nor.png",
+      "bytes": 10655983
+    },
+    {
+      "path": "sourceimages/Hand_rou.png",
+      "bytes": 3215063
+    },
+    {
+      "path": "sourceimages/Jacket_dif.png",
+      "bytes": 4154218
+    },
+    {
+      "path": "sourceimages/Jacket_met.png",
+      "bytes": 125451
+    },
+    {
+      "path": "sourceimages/Jacket_nor.png",
+      "bytes": 6393018
+    },
+    {
+      "path": "sourceimages/Jacket_rou.png",
+      "bytes": 1595503
+    },
+    {
+      "path": "sourceimages/Leg_dif.png",
+      "bytes": 4354682
+    },
+    {
+      "path": "sourceimages/Leg_met.png",
+      "bytes": 915576
+    },
+    {
+      "path": "sourceimages/Leg_nor.png",
+      "bytes": 8755052
+    },
+    {
+      "path": "sourceimages/Leg_rou.png",
+      "bytes": 2440662
+    },
+    {
+      "path": "sourceimages/Palm_dif.png",
+      "bytes": 4441265
+    },
+    {
+      "path": "sourceimages/Palm_met.png",
+      "bytes": 603207
+    },
+    {
+      "path": "sourceimages/Palm_nor.png",
+      "bytes": 8042232
+    },
+    {
+      "path": "sourceimages/Palm_rou.png",
+      "bytes": 2203779
+    },
+    {
+      "path": "sourceimages/Shoes_dif.png",
+      "bytes": 3331840
+    },
+    {
+      "path": "sourceimages/Shoes_met.png",
+      "bytes": 336372
+    },
+    {
+      "path": "sourceimages/Shoes_nor.png",
+      "bytes": 8543235
+    },
+    {
+      "path": "sourceimages/Shoes_rou.png",
+      "bytes": 1225096
+    },
+    {
+      "path": "sourceimages/UppArmor_dif.png",
+      "bytes": 4578022
+    },
+    {
+      "path": "sourceimages/UppArmor_met.png",
+      "bytes": 1589429
+    },
+    {
+      "path": "sourceimages/UppArmor_nor.png",
+      "bytes": 8611856
+    },
+    {
+      "path": "sourceimages/UppArmor_rou.png",
+      "bytes": 2455578
+    },
+    {
+      "path": "sourceimages/faceplate_Diffuse.tga",
+      "bytes": 16777234
+    },
+    {
+      "path": "sourceimages/helmet_Diffuse_new.tga",
+      "bytes": 16777260
+    },
+    {
+      "path": "sourceimages/helmet_Roughness_Baked.png",
+      "bytes": 282376
+    },
+    {
+      "path": "sourceimages/iin_ear_Diffuse.tga",
+      "bytes": 1048594
+    },
+    {
+      "path": "sourceimages/out_ear_Diffuse_new.tga",
+      "bytes": 4194348
+    },
+    {
+      "path": "sourceimages/sideburns_Diffuse.tga",
+      "bytes": 4194322
+    },
+    {
+      "path": "sourceimages/wing_CircuitTest_V4.png",
+      "bytes": 1154250
+    },
+    {
+      "path": "sourceimages/wing_Diffuse.tga",
+      "bytes": 4194322
+    }
+  ],
+  "textureExpectations": {
+    "sourcePath": "C:/Users/jeysa/Desktop/Ebee_New/sourceimages",
+    "requiredFiles": [
+      "Body_dif.png",
+      "Body_met.png",
+      "Body_nor.png",
+      "Body_rou.png",
+      "BtmArmor_dif.png",
+      "BtmArmor_met.png",
+      "BtmArmor_nor.png",
+      "BtmArmor_rou.png",
+      "Butt_dif.png",
+      "Butt_met.png",
+      "Butt_nor.png",
+      "Butt_rou.png",
+      "Eyegreen.jpg",
+      "Face01_dif.png",
+      "Face_dif.png",
+      "Hand_dif.png",
+      "Hand_met.png",
+      "Hand_nor.png",
+      "Hand_rou.png",
+      "Jacket_dif.png",
+      "Jacket_met.png",
+      "Jacket_nor.png",
+      "Jacket_rou.png",
+      "Leg_dif.png",
+      "Leg_met.png",
+      "Leg_nor.png",
+      "Leg_rou.png",
+      "Palm_dif.png",
+      "Palm_met.png",
+      "Palm_nor.png",
+      "Palm_rou.png",
+      "Shoes_dif.png",
+      "Shoes_met.png",
+      "Shoes_nor.png",
+      "Shoes_rou.png",
+      "UppArmor_dif.png",
+      "UppArmor_met.png",
+      "UppArmor_nor.png",
+      "UppArmor_rou.png",
+      "faceplate_Diffuse.tga",
+      "helmet_Diffuse_new.tga",
+      "helmet_Roughness_Baked.png",
+      "iin_ear_Diffuse.tga",
+      "out_ear_Diffuse_new.tga",
+      "sideburns_Diffuse.tga",
+      "wing_CircuitTest_V4.png",
+      "wing_Diffuse.tga"
+    ],
+    "requiredCount": 47
+  },
+  "motionDatabase": {
+    "path": "ebee_ai4animation_motion_database.json",
+    "schema": "hive-ebee-motion-database/v1",
+    "bytes": 32683705,
+    "frameCount": 180,
+    "frameCounts": {
+      "READY": 36,
+      "LISTENING": 36,
+      "THINKING": 36,
+      "SPEAKING": 36,
+      "NEEDS_REVIEW": 36
+    },
+    "source": "Unity AI4Animation prepared project full-rig Ebee batch export",
+    "sourceSchema": "ai4animation-motion-export/v1",
+    "promotedBy": "scripts/promote-ai4animation-motion.mjs",
+    "installedBy": "scripts/install-ai4animation-motion.mjs",
+    "runtimeMotionDatabase": true,
+    "preferredRuntimeDatabase": true,
+    "fallbackPath": "ebee_motion_database.json",
+    "ai4AnimationPath": "ebee_ai4animation_motion_database.json"
+  },
+  "rigMap": {
+    "path": "ebee_rig_map.json",
+    "schema": "hive-ebee-rig-map/v1",
+    "bytes": 343145,
+    "controllableNodeCount": 750,
+    "visibleAvatarMeshCount": 143
+  },
+  "ai4AnimationContract": {
+    "path": "ebee_ai4animation_contract.json",
+    "schema": "hive-ebee-ai4animation-contract/v1",
+    "bytes": 266159,
+    "exportSchema": "ai4animation-motion-export/v1",
+    "jointGroups": 26
+  },
+  "ai4AnimationExportJsonSchema": {
+    "path": "ebee_ai4animation_export.schema.json",
+    "schema": "https://json-schema.org/draft/2020-12/schema",
+    "bytes": 2588624,
+    "exportSchema": "ai4animation-motion-export/v1",
+    "jointGroups": 26
+  },
+  "rigExpectations": {
+    "controllableNodeCountMin": 120,
+    "visibleAvatarMeshCountMin": 40,
+    "requiredGroups": [
+      "root",
+      "spine",
+      "chest",
+      "neck",
+      "head",
+      "facePlate",
+      "antenna",
+      "shoulderL",
+      "elbowL",
+      "wristL",
+      "fingersL",
+      "shoulderR",
+      "elbowR",
+      "wristR",
+      "fingersR",
+      "hipL",
+      "kneeL",
+      "ankleL",
+      "toesL",
+      "hipR",
+      "kneeR",
+      "ankleR",
+      "toesR",
+      "wingL",
+      "wingR",
+      "tail"
+    ]
+  }
+}

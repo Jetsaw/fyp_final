@@ -1,0 +1,111 @@
+# Template Structure
+
+- DECLARATION
+- ABSTRACT
+- TABLE OF CONTENTS
+- DECLARATION	iii
+- ABSTRACT		v
+- TABLE OF CONTENTS	vii
+- CHAPTER 1:	INTRODUCTION	1
+- 1.1	Overview	1
+- 1.2	Problem Statements	1
+- 1.3	Project Scope	1
+- 1.4	Report Outline	1
+- CHAPTER 2:	LITERATURE REVIEW	2
+- 2.1	Guides on Writing Reviews of Literature	2
+- 2.1.1	Introduction Section	2
+- 2.1.2	Literature Review Section	3
+- 2.2	References and Citations	4
+- CHAPTER 3:	DETAILS OF THE DESIGN	5
+- 3.1	Writing Style	5
+- 3.2	Figures and Tables	5
+- 3.3	Equations	7
+- CHAPTER 4:	DATA PRESENTATION AND DISCUSSION OF FINDINGS	8
+- 4.1	Data Presentation	8
+- 4.2	Discussion of Findings	9
+- CHAPTER 5:	CONCLUSIONS	10
+- 5.1	Summary and Conclusions	10
+- 5.2	Areas of Future Research	10
+
+## First Template Paragraphs
+
+- ©  Universiti Telekom Sdn. Bhd.  ALL RIGHTS RESERVED.
+- Copyright of this report belongs to Universiti Telekom Sdn. Bhd. as qualified by Regulation 7.2 (c) of the Multimedia University Intellectual Property and Commercialisation Policy. No part of this publication may be reproduced, stored in or introduced into a retrieval system, or transmitted in any form or by any means (electronic, mechanical, photocopying, recording, or otherwise), or for any purpose, without the express written permission of Universiti Telekom Sdn. Bhd. Due acknowledgement shall always be made of the use of any material contained in, or derived from, this report.
+- DECLARATION
+- I hereby declare that this work has been done by myself and no portion of the work contained in this report has been submitted in support of any application for any other degree or qualification of this or any other university or institute of learning.
+- I also declare that pursuant to the provisions of the Copyright Act 1987, I have not engaged in any unauthorised act of copying or reproducing or attempt to copy / reproduce or cause to copy / reproduce or permit the copying / reproducing or the sharing and / or downloading of any copyrighted material or an attempt to do so whether by use of the University’s facilities or outside networks / facilities whether in hard copy or soft copy format, of any material protected under the provisions of sections 3 and 7 of the Act whether for payment or otherwise save as specifically provided for therein. This shall include but not be limited to any lecture notes, course packs, thesis, text books, exam questions, any works of authorship fixed in any tangible medium of expression whether provided by the University or otherwise.
+- I hereby further declare that in the event of any infringement of the provisions of the Act whether knowingly or unknowingly the University shall not be liable for the same in any manner whatsoever and undertakes to indemnify and keep indemnified the University against all such claims and actions.
+- Signature: ________________________
+- Name:
+- Student ID:
+- Date:
+- ACKNOWLEDGEMENT
+- This is a brief acknowledgement of assistance given to the writer in researching and writing the report. Its page is numbered with a consecutive lower-case Roman numeral. Times New Roman typeface with font size 12 shall be used.
+- ABSTRACT
+- Typical format of abstract usually begins with a short introduction to the project that you have done. It is normally covered in 2 to 3 sentences. It should not include what have not been done or what will be done. Furthermore, it is definitely not a general introduction that is not directly related to your project.
+- This is followed by a brief and concise description of the project implementation. This is basically a synopsis of ‘methodology’ or ‘design’ used in your project. It can include the operation of your project product (for hardware or software type) in brief. Specific model or rare items (hardware or software) can be mentioned. This part is limited to 150 words.
+- Next, the summary of significant results and findings of your project is presented. This usually comes from the chapter ‘data presentation’ and/or ‘discussion of findings’. The results or data and the discussion can be combined and presented in this part. Data/results can be mentioned in form of relative manner, e.g. x is proportional to y with proportional constant of w, or x = wy. Performance of hardware or software can be either quantitative or qualitative (descriptive) but the descriptive form should be result-oriented. Important comparisons between theoretical or ideal cases and practical cases can also be included.
+- Finally, the abstract ends with important or overall conclusion. Only the important or significant conclusions from chapter ‘conclusion’ are presented here. Alternatively, an overall conclusion which combines all the individual conclusions can be included here. Notes: You may write your abstract in one or two paragraphs. It is important to note that abstract is written in a case by case basis. However, a typical format can be useful as a guide or reference for you to write the abstract of your project report.
+- The following items CANNOT be included in the abstract: 1. Issues related to personal, e.g. learned a lot of things from this project. 2. First and second person pronouns (I, we, you, me, my, etc.). 3. Outline of chapters in your project report. 4. Any issues that are not produced from your project (except comparison cases with another person’s work). 5. Reference index or reference number.
+- TABLE OF CONTENTS
+- DECLARATION	iii
+- ACKNOWLEDGEMENT	iv
+- ABSTRACT		v
+- TABLE OF CONTENTS	vii
+- LIST OF FIGURES	ix
+- LIST OF TABLES	x
+- LIST OF ABBREVIATIONS	xi
+- CHAPTER 1:	INTRODUCTION	1
+- 1.1	Overview	1
+- 1.2	Problem Statements	1
+- 1.3	Project Scope	1
+- 1.4	Report Outline	1
+- CHAPTER 2:	LITERATURE REVIEW	2
+- 2.1	Guides on Writing Reviews of Literature	2
+- 2.1.1	Introduction Section	2
+- 2.1.2	Literature Review Section	3
+- 2.2	References and Citations	4
+- CHAPTER 3:	DETAILS OF THE DESIGN	5
+- 3.1	Writing Style	5
+- 3.2	Figures and Tables	5
+- 3.3	Equations	7
+- CHAPTER 4:	DATA PRESENTATION AND DISCUSSION OF FINDINGS	8
+- 4.1	Data Presentation	8
+- 4.2	Discussion of Findings	9
+- CHAPTER 5:	CONCLUSIONS	10
+- 5.1	Summary and Conclusions	10
+- 5.2	Areas of Future Research	10
+- REFERENCES		11
+- APPENDIX A		12
+- LIST OF FIGURES
+- Figure 3.1: Example of figure and its caption.	5
+- Figure 3.2: Example of acceptable quality image.	6
+- Figure 3.3: Example of bad quality image (enlarged beyond their print resolution)	6
+- LIST OF TABLES
+- Table 3.1: Table Styles	7
+- Table 4.1: General Considerations when Using Table and Graphs	9
+- LIST OF ABBREVIATIONS
+- FYP		Final Year Project
+- ADC		Analog to Digital Converter
+- DAC		Digital to Analog Converter
+- DSP		Digital Signal Processing
+- INTRODUCTION
+- Overview
+- This section serves to guide readers into the project. It should generate interest and motivate readers to read further about the project. It should provide sufficient background for readers to understand the project’s problem statements. Usually, it is written by first describing the big picture of real life problems or scenarios and gradually narrows down to specific problems addressed by the project.
+- Problem Statements
+- This section serves to highlight the specific problems addressed by the project.
+- Project Scope
+- This section gives an overview of project activities, e.g. what are carried out, what are not and what the limitations are.
+- Report Outline
+- This section serves to inform readers about the organisation of the report, e.g. what are presented and where and how they are presented.
+- LITERATURE REVIEW
+- This chapter demonstrates your ability to review, and to report on relevant literature and past work on your given topic. A well written literature review:
+- allows the reader to easily place the focus of your FYP project within the context of the wider academic community in your field;
+- reports your critical review of the relevant literature; and
+- identifies a gap within that literature that your research will attempt to address.
+- Guides on Writing Reviews of Literature
+- What you need to do before writing your literature review:
+- Find relevant literature on your FYP topic and follow streams of references
+- Identify important themes/ideas/theories/approaches to the topic that have emerged during your research on your respective FYP topic
+- Introduce ideas by themes/theory/approach/chronologically or any other appropriate structure but do not just list different authors’ viewpoints
+- Introduce and explain each theme (or theory/approach), present evidence from readings (agreements/disagreements), critically commentate and relate to your own research

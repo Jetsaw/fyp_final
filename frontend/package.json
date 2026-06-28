@@ -1,0 +1,48 @@
+{
+  "name": "frontend",
+  "private": true,
+  "version": "0.0.0",
+  "type": "module",
+  "scripts": {
+    "dev": "vite",
+    "build": "tsc -b && vite build",
+    "lint": "eslint .",
+    "preview": "vite preview",
+    "avatar:check": "node scripts/validate-exact-avatar.mjs",
+    "avatar:ready": "node scripts/validate-exact-avatar.mjs --strict",
+    "kiosk:check": "node scripts/check-kiosk-readiness.mjs",
+    "course:generate": "node scripts/generate-course-knowledge.mjs",
+    "course:validate": "node scripts/validate-course-knowledge.mjs",
+    "rag:eval": "node scripts/evaluate-rag-accuracy.mjs",
+    "rag:eval:product": "node scripts/evaluate-rag-accuracy.mjs",
+    "rag:eval:raw": "powershell -NoProfile -ExecutionPolicy Bypass -File scripts/evaluate-rag-raw-backend.ps1",
+    "rag:eval:qa-all": "node scripts/evaluate-all-qa-pairs.mjs",
+    "rag:summary": "node scripts/summarize-rag-eval.mjs",
+    "rag:deliverables": "node scripts/check-rag-deliverables.mjs",
+    "stopslop:check": "node scripts/check-stop-slop-output.mjs",
+    "backend:patch:check": "powershell -NoProfile -ExecutionPolicy Bypass -File scripts/apply-backend-rag-patch.ps1 -CheckOnly",
+    "backend:patch:status": "powershell -NoProfile -ExecutionPolicy Bypass -File scripts/check-backend-rag-patch-status.ps1",
+    "backend:patch:apply": "powershell -NoProfile -ExecutionPolicy Bypass -File scripts/apply-backend-rag-patch.ps1",
+    "backend:patch:restore": "powershell -NoProfile -ExecutionPolicy Bypass -File scripts/restore-backend-rag-patch.ps1",
+    "backend:guard:start": "powershell -NoProfile -ExecutionPolicy Bypass -File scripts/start-course-guard-backend.ps1",
+    "commercial:check": "npm run course:generate && npm run course:validate && npm run avatar:ready && npm run kiosk:check && npm run rag:eval:product && npm run rag:summary && npm run rag:deliverables"
+  },
+  "dependencies": {
+    "react": "^19.2.5",
+    "react-dom": "^19.2.5"
+  },
+  "devDependencies": {
+    "@eslint/js": "^10.0.1",
+    "@types/node": "^24.12.2",
+    "@types/react": "^19.2.14",
+    "@types/react-dom": "^19.2.3",
+    "@vitejs/plugin-react": "^6.0.1",
+    "eslint": "^10.2.1",
+    "eslint-plugin-react-hooks": "^7.1.1",
+    "eslint-plugin-react-refresh": "^0.5.2",
+    "globals": "^17.5.0",
+    "typescript": "~6.0.2",
+    "typescript-eslint": "^8.58.2",
+    "vite": "^8.0.10"
+  }
+}

@@ -1,0 +1,204 @@
+{
+  "baseUrl": "http://127.0.0.1:5174",
+  "total": 14,
+  "passed": 14,
+  "generatedAt": "2026-06-04T08:40:21.223Z",
+  "results": [
+    {
+      "id": "project_i_prereq",
+      "question": "What are the prerequisites for Project I?",
+      "status": 200,
+      "passed": true,
+      "missingKeywords": [],
+      "missingSources": [],
+      "ragDisabled": false,
+      "answerPreview": "ARP6110-P1 Project I requires completed 60 credit hours.",
+      "sources": [
+        "prereq_rules.json",
+        "Subject Code all - cleaned.docx"
+      ]
+    },
+    {
+      "id": "project_i_simple",
+      "question": "What is Project I?",
+      "status": 200,
+      "passed": true,
+      "missingKeywords": [],
+      "missingSources": [],
+      "ragDisabled": false,
+      "answerPreview": "ARP6110-P1 Project I requires completed 60 credit hours.",
+      "sources": [
+        "prereq_rules.json",
+        "Subject Code all - cleaned.docx"
+      ]
+    },
+    {
+      "id": "project_ii_prereq",
+      "question": "What are the prerequisites for Project II?",
+      "status": 200,
+      "passed": true,
+      "missingKeywords": [],
+      "missingSources": [],
+      "ragDisabled": false,
+      "answerPreview": "ARP6110-P2 Project II requires completed 60 credit hours and ARP6110-P1 Project I.",
+      "sources": [
+        "prereq_rules.json",
+        "Subject Code all - cleaned.docx"
+      ]
+    },
+    {
+      "id": "course_code_query",
+      "question": "Tell me about ARP6110-P1.",
+      "status": 200,
+      "passed": true,
+      "missingKeywords": [],
+      "missingSources": [],
+      "ragDisabled": false,
+      "answerPreview": "ARP6110-P1 Project I requires completed 60 credit hours.",
+      "sources": [
+        "prereq_rules.json",
+        "Subject Code all - cleaned.docx"
+      ]
+    },
+    {
+      "id": "progression_rules",
+      "question": "What should I know about progression rules?",
+      "status": 200,
+      "passed": true,
+      "missingKeywords": [],
+      "missingSources": [],
+      "ragDisabled": false,
+      "answerPreview": "Progression rules should be checked against the programme structure and prerequisite rules. For the project sequence, Project I requires completed 60 credit hours, and Project II requires both Project I and completed 60 credit hours.",
+      "sources": [
+        "programme_structure.jsonl",
+        "prereq_rules.json"
+      ]
+    },
+    {
+      "id": "applied_ai_total_credits",
+      "question": "How many total credits are required for the Applied AI programme?",
+      "status": 200,
+      "passed": true,
+      "missingKeywords": [],
+      "missingSources": [],
+      "ragDisabled": false,
+      "answerPreview": "Bachelor of Science (Hons) in Applied Artificial Intelligence requires 120 total credits.",
+      "sources": [
+        "programme_structure.jsonl",
+        "BScAAI-Oct-2025-T2530.pdf"
+      ]
+    },
+    {
+      "id": "applied_ai_term_2530",
+      "question": "What courses are in Term 2530 for Applied AI?",
+      "status": 200,
+      "passed": true,
+      "missingKeywords": [],
+      "missingSources": [],
+      "ragDisabled": false,
+      "answerPreview": "Term 2530 for Applied AI includes AAC6164, AAC6113, AAC6213.",
+      "sources": [
+        "programme_structure.jsonl",
+        "BScAAI-Oct-2025-T2530.pdf"
+      ]
+    },
+    {
+      "id": "applied_ai_study_plan",
+      "question": "Show me the study plan for Applied AI.",
+      "status": 200,
+      "passed": true,
+      "missingKeywords": [],
+      "missingSources": [],
+      "ragDisabled": false,
+      "answerPreview": "Applied AI structure for Bachelor of Science (Hons) in Applied Artificial Intelligence: Term 2530: AAC6164, AAC6113, AAC6213; Term 2610: AAC6173, AAC6123, AAM6123; Term 2620: AAC6133, AAC6153, AAC6223, AAC6203; Term 2630: AAT6163, AAT6153; ",
+      "sources": [
+        "programme_structure.jsonl",
+        "BScAAI-Oct-2025-T2530.pdf"
+      ]
+    },
+    {
+      "id": "applied_ai_term_2820",
+      "question": "What courses are in Term 2820 for Applied AI?",
+      "status": 200,
+      "passed": true,
+      "missingKeywords": [],
+      "missingSources": [],
+      "ragDisabled": false,
+      "answerPreview": "Term 2820 for Applied AI includes AAT6133, AAE6173, AAC6233, AAE6134, AAE6153.",
+      "sources": [
+        "programme_structure.jsonl",
+        "BScAAI-Oct-2025-T2530.pdf"
+      ]
+    },
+    {
+      "id": "applied_ai_industrial_training",
+      "question": "What is the prerequisite for Industrial Training in Applied AI?",
+      "status": 200,
+      "passed": true,
+      "missingKeywords": [],
+      "missingSources": [],
+      "ragDisabled": false,
+      "answerPreview": "Industrial Training (AAP6126) requires Pre-Req: 60 CH (credit hours).",
+      "sources": [
+        "programme_structure.jsonl",
+        "BScAAI-Oct-2025-T2530.pdf"
+      ]
+    },
+    {
+      "id": "robotics_oct_nov_2025",
+      "question": "What courses are offered in Trimester Oct/Nov 2025 for Intelligent Robotics?",
+      "status": 200,
+      "passed": true,
+      "missingKeywords": [],
+      "missingSources": [],
+      "ragDisabled": false,
+      "answerPreview": "Trimester Oct/Nov 2025 for Intelligent Robotics includes ARM6113, ARC6113, ARE6113, ARC6123, MMD6123.",
+      "sources": [
+        "programme_structure.jsonl",
+        "BSc-October-2025-T2530.pdf"
+      ]
+    },
+    {
+      "id": "robotics_mar_apr_2027",
+      "question": "List the course codes for Trimester Mar/Apr 2027 in Intelligent Robotics.",
+      "status": 200,
+      "passed": true,
+      "missingKeywords": [],
+      "missingSources": [],
+      "ragDisabled": false,
+      "answerPreview": "Trimester Mar/Apr 2027 for Intelligent Robotics includes ARE6143, ARR6143, ARR6133, ARL6153, ARL6163, ARL6173, ARE6153, ARC6173, ARC6153, ARC6163, ARA6144.",
+      "sources": [
+        "programme_structure.jsonl",
+        "BSc-October-2025-T2530.pdf"
+      ]
+    },
+    {
+      "id": "robotics_industrial_training",
+      "question": "What is the prerequisite for industrial training in Intelligent Robotics?",
+      "status": 200,
+      "passed": true,
+      "missingKeywords": [],
+      "missingSources": [],
+      "ragDisabled": false,
+      "answerPreview": "Industrial training (ART6116) requires Pre-Req: 60 CH (credit hours).",
+      "sources": [
+        "programme_structure.jsonl",
+        "BSc-October-2025-T2530.pdf"
+      ]
+    },
+    {
+      "id": "robotics_mpu",
+      "question": "What MPU or university courses are included in Intelligent Robotics?",
+      "status": 200,
+      "passed": true,
+      "missingKeywords": [],
+      "missingSources": [],
+      "ragDisabled": false,
+      "answerPreview": "The programme structure includes MPU-U1 (LMPU3182 for local / LMPU3142 for international, and LMPU3192), MPU-U2, MPU-U4, and LMPU3312 Integrity and Leadership. It also includes university courses such as LSSW6112 Sustainable Society, Charac",
+      "sources": [
+        "programme_structure.jsonl",
+        "BSc-October-2025-T2530.pdf"
+      ]
+    }
+  ]
+}

@@ -1,0 +1,200 @@
+[
+  {
+    "source": "frontend/ui-refresh-landscape.png",
+    "copy": "05_figures\\figure_01_ui-refresh-landscape.png",
+    "copied": true,
+    "caption": "Landscape kiosk interface after the UI refresh.",
+    "size": [
+      1366,
+      900
+    ],
+    "bytes": 480647
+  },
+  {
+    "source": "frontend/ui-refresh-portrait.png",
+    "copy": "05_figures\\figure_02_ui-refresh-portrait.png",
+    "copied": true,
+    "caption": "Portrait kiosk interface for tall screens.",
+    "size": [
+      430,
+      900
+    ],
+    "bytes": 365343
+  },
+  {
+    "source": "frontend/avatar-video-only-verified.png",
+    "copy": "05_figures\\figure_03_avatar-video-only-verified.png",
+    "copied": true,
+    "caption": "Verified generated-video avatar layout.",
+    "size": [
+      1366,
+      900
+    ],
+    "bytes": 271225
+  },
+  {
+    "source": "frontend/avatar-video-check.png",
+    "copy": "05_figures\\figure_04_avatar-video-check.png",
+    "copied": true,
+    "caption": "Avatar video rendering check in the application shell.",
+    "size": [
+      1366,
+      900
+    ],
+    "bytes": 373946
+  },
+  {
+    "source": "frontend/avatar-white-landscape.png",
+    "copy": "05_figures\\figure_05_avatar-white-landscape.png",
+    "copied": true,
+    "caption": "White-background avatar validation in landscape mode.",
+    "size": [
+      1366,
+      900
+    ],
+    "bytes": 276101
+  },
+  {
+    "source": "frontend/avatar-white-portrait.png",
+    "copy": "05_figures\\figure_06_avatar-white-portrait.png",
+    "copied": true,
+    "caption": "White-background avatar validation in portrait mode.",
+    "size": [
+      430,
+      900
+    ],
+    "bytes": 157138
+  },
+  {
+    "source": "frontend/src/assets/hive-scene-bg.png",
+    "copy": "05_figures\\figure_07_hive-scene-bg.png",
+    "copied": true,
+    "caption": "Hive visual background asset used by the kiosk interface.",
+    "size": [
+      1728,
+      2444
+    ],
+    "bytes": 8088473
+  },
+  {
+    "source": "frontend/src/assets/hero-transparent.png",
+    "copy": "05_figures\\figure_08_hero-transparent.png",
+    "copied": true,
+    "caption": "Transparent hero asset used in the interface design.",
+    "size": [
+      420,
+      594
+    ],
+    "bytes": 180506
+  },
+  {
+    "source": "frontend/src/assets/ebee-exact-transparent.png",
+    "copy": "05_figures\\figure_09_ebee-exact-transparent.png",
+    "copied": true,
+    "caption": "Transparent Ebee asset used by the exact avatar component.",
+    "size": [
+      840,
+      1188
+    ],
+    "bytes": 529265
+  },
+  {
+    "source": "frontend/public/avatar.png",
+    "copy": "05_figures\\figure_10_avatar.png",
+    "copied": true,
+    "caption": "Original avatar reference asset.",
+    "size": [
+      1055,
+      1491
+    ],
+    "bytes": 832765
+  },
+  {
+    "source": "frontend/public/avatar/exact/idle.png",
+    "copy": "05_figures\\figure_11_idle.png",
+    "copied": true,
+    "caption": "Exact avatar idle state.",
+    "size": [
+      840,
+      1188
+    ],
+    "bytes": 195241
+  },
+  {
+    "source": "frontend/public/avatar/exact/listening.png",
+    "copy": "05_figures\\figure_12_listening.png",
+    "copied": true,
+    "caption": "Exact avatar listening state.",
+    "size": [
+      840,
+      1188
+    ],
+    "bytes": 194513
+  },
+  {
+    "source": "frontend/public/avatar/exact/thinking.png",
+    "copy": "05_figures\\figure_13_thinking.png",
+    "copied": true,
+    "caption": "Exact avatar thinking state.",
+    "size": [
+      840,
+      1188
+    ],
+    "bytes": 183433
+  },
+  {
+    "source": "frontend/public/avatar/exact/speaking.png",
+    "copy": "05_figures\\figure_14_speaking.png",
+    "copied": true,
+    "caption": "Exact avatar speaking state.",
+    "size": [
+      840,
+      1188
+    ],
+    "bytes": 186915
+  },
+  {
+    "source": "frontend/public/avatar/exact/error.png",
+    "copy": "05_figures\\figure_15_error.png",
+    "copied": true,
+    "caption": "Exact avatar error state.",
+    "size": [
+      840,
+      1188
+    ],
+    "bytes": 188333
+  },
+  {
+    "source": "[generated]",
+    "copy": "05_figures\\figure_16_architecture_diagram.png",
+    "copied": true,
+    "caption": "System architecture for the Hive academic advising kiosk.",
+    "size": [
+      1800,
+      1050
+    ],
+    "bytes": 87060
+  },
+  {
+    "source": "[generated]",
+    "copy": "05_figures\\figure_17_evaluation_results.png",
+    "copied": true,
+    "caption": "Evaluation summary chart generated from project result files.",
+    "size": [
+      1500,
+      900
+    ],
+    "bytes": 49467
+  },
+  {
+    "source": "[generated]",
+    "copy": "05_figures\\figure_18_avatar_state_contact_sheet.png",
+    "copied": true,
+    "caption": "Contact sheet of the exact Ebee avatar states.",
+    "size": [
+      1300,
+      520
+    ],
+    "bytes": 67663
+  }
+]
