@@ -104,6 +104,49 @@ def _has_any(text: str, values: list[str]) -> bool:
     return any(value in text for value in values)
 
 
+def _is_academic_scope(question: str) -> bool:
+    query = _qa_key(question)
+    academic_terms = {
+        "academic",
+        "advisor",
+        "ai",
+        "arc6113",
+        "arr6153",
+        "byoc",
+        "calculus",
+        "career",
+        "code",
+        "communications",
+        "course",
+        "credit",
+        "drone",
+        "elective",
+        "engineering",
+        "faculty",
+        "fyp",
+        "intelligent",
+        "mmd6123",
+        "mmu",
+        "mobile",
+        "prereq",
+        "prerequisite",
+        "program",
+        "programme",
+        "project",
+        "registration",
+        "robot",
+        "semester",
+        "subject",
+        "technical",
+        "trimester",
+        "wireless",
+        "year",
+    }
+    if COURSE_CODE_RE.search(question):
+        return True
+    return bool(set(query.split()) & academic_terms)
+
+
 def _wants_course_codes(question: str) -> bool:
     return bool(COURSE_CODE_RE.search(question)) or _has_any(
         question,
@@ -280,6 +323,14 @@ def _byoc_slot(query: str) -> str | None:
 
 def answer_course_question(question: str) -> dict[str, Any] | None:
     query = re.sub(r"\s+", " ", _normalize_question(question)).strip()
+    if not _is_academic_scope(question):
+        return _make_answer(
+            "Sorry, I could not find that in the Hive academic knowledge base. Please rephrase your question, or ask FAIE staff for this item.",
+            ["safe_fallback"],
+            0.0,
+            route="safe_fallback",
+        )
+
     eval_answer = _answer_eval_qa(question)
     if eval_answer:
         return eval_answer

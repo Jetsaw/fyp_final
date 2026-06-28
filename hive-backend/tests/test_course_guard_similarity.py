@@ -67,8 +67,11 @@ def test_singular_intelligent_robotic_overview_is_short():
 
 
 def test_unknown_question_uses_safe_staff_fallback():
-    answer = _fallback_answer("what is cafeteria menu on Mars?")
+    answer = answer_course_question("what is cafeteria menu on Mars?")
 
     assert answer["route"] == "safe_fallback"
     assert "rephrase your question" in answer["answer"]
     assert "FAIE staff" in answer["answer"]
+
+    standalone = _fallback_answer("what is cafeteria menu on Mars?")
+    assert standalone["answer"] == answer["answer"]
