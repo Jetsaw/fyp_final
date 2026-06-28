@@ -1,5 +1,6 @@
 from fastapi import APIRouter
 from pydantic import BaseModel, Field
+import re
 
 from app.rag.indexer import build_or_load_structure_index, build_or_load_details_index
 from app.rag.retriever import search_structure_layer, search_details_layer
@@ -197,6 +198,57 @@ class AskReq(BaseModel):
     user_id: str = "hive-kiosk"
 
 
+LONG_ANSWER_LIMIT = 430
+MORE_INTENT_RE = re.compile(r"^\s*(yes|yup|yeah|more|tell me more|continue|go on|next)\s*[.!?]*\s*$", re.IGNORECASE)
+
+
+def _wants_full_detail(question: str) -> bool:
+    return bool(re.search(r"\b(all|complete|every|full|full list|full outline|show all|show me all)\b", question, re.IGNORECASE))
+
+
+def _split_long_answer(answer: str) -> list[str]:
+    if len(answer) <= LONG_ANSWER_LIMIT:
+        return [answer]
+
+    sentences = [sentence for sentence in re.split(r"(?<=[.!?])\s+", answer.strip()) if sentence]
+    if len(sentences) < 3:
+        return [answer]
+
+    size = max(1, (len(sentences) + 2) // 3)
+    return [" ".join(sentences[index : index + size]) for index in range(0, len(sentences), size)]
+
+
+def _with_memory_answer_parts(question: str, answer: str, session, memory_status: dict) -> str:
+    if _wants_full_detail(question) or len(memory_status.get("layers", {})) < 3:
+        session.metadata.pop("answer_parts", None)
+        return answer
+
+    parts = _split_long_answer(answer)
+    if len(parts) <= 1:
+        session.metadata.pop("answer_parts", None)
+        return answer
+
+    session.metadata["answer_parts"] = {"parts": parts, "next_index": 1}
+    return f"{parts[0]} Do you want to know more?"
+
+
+def _next_answer_part(session) -> str | None:
+    state = session.metadata.get("answer_parts") or {}
+    parts = state.get("parts") or []
+    index = int(state.get("next_index") or 0)
+    if not parts or index >= len(parts):
+        session.metadata.pop("answer_parts", None)
+        return None
+
+    state["next_index"] = index + 1
+    if state["next_index"] >= len(parts):
+        session.metadata.pop("answer_parts", None)
+        return parts[index]
+
+    session.metadata["answer_parts"] = state
+    return f"{parts[index]} Do you want to know more?"
+
+
 def _text_has_any(text: str, values: list[str]) -> bool:
     return any(value in text for value in values)
 
@@ -345,6 +397,18 @@ async def chat(req: ChatReq):
     save_message(user_id, "user", question)
 
     session = SESSION_MANAGER.get_session(user_id)
+    if MORE_INTENT_RE.match(question):
+        next_part = _next_answer_part(session)
+        if next_part:
+            SESSION_MANAGER.add_to_history(user_id, "user", question)
+            SESSION_MANAGER.add_to_history(user_id, "assistant", next_part)
+            save_message(user_id, "assistant", next_part)
+            return {
+                "answer": next_part,
+                "route": "answer_part_continuation",
+                "used_rag": True,
+                "memory": SESSION_MANAGER.get_memory_status(user_id),
+            }
     
     detection = detect_programme(
         question, 
@@ -446,6 +510,8 @@ async def chat(req: ChatReq):
 
     byoc_answer = _answer_byoc_advice(question, session)
     if byoc_answer:
+        memory_status = SESSION_MANAGER.get_memory_status(user_id)
+        byoc_answer["answer"] = _with_memory_answer_parts(question, byoc_answer["answer"], session, memory_status)
         SESSION_MANAGER.update_session(user_id, {
             "preferences": session.preferences,
             "metadata": session.metadata,
@@ -456,16 +522,18 @@ async def chat(req: ChatReq):
         SESSION_MANAGER.add_to_history(user_id, "assistant", byoc_answer["answer"])
         save_message(user_id, "assistant", byoc_answer["answer"])
         return byoc_answer | {
-            "memory": SESSION_MANAGER.get_memory_status(user_id),
+            "memory": memory_status,
         }
 
     guarded_answer = answer_course_question(question)
     if guarded_answer:
+        memory_status = SESSION_MANAGER.get_memory_status(user_id)
+        guarded_answer["answer"] = _with_memory_answer_parts(question, guarded_answer["answer"], session, memory_status)
         SESSION_MANAGER.add_to_history(user_id, "user", question)
         SESSION_MANAGER.add_to_history(user_id, "assistant", guarded_answer["answer"])
         save_message(user_id, "assistant", guarded_answer["answer"])
         return guarded_answer | {
-            "memory": SESSION_MANAGER.get_memory_status(user_id),
+            "memory": memory_status,
         }
     
     route = route_query(question, session)
@@ -556,6 +624,9 @@ async def chat(req: ChatReq):
         print(f"[ERROR] REFLECTION_AGENT.evaluate failed: {e}")
         # Continue without reflection if it fails
 
+    memory_status = SESSION_MANAGER.get_memory_status(user_id)
+    response["answer"] = _with_memory_answer_parts(question, response["answer"], session, memory_status)
+
     try:
         await SESSION_MANAGER.add_conversation_pair(user_id, question, response["answer"])
     except Exception as e:
@@ -571,8 +642,6 @@ async def chat(req: ChatReq):
         SESSION_MANAGER.update_session(user_id, {"mode": "DETAILS"})
     
     save_message(user_id, "assistant", response["answer"])
-    
-    memory_status = SESSION_MANAGER.get_memory_status(user_id)
     
     from app.services.unanswered_detector import is_unanswered, get_uncertainty_reason
     from app.repositories.unanswered_repo import save_unanswered_question
