@@ -253,6 +253,32 @@ def _next_answer_part(session) -> str | None:
     return f"{parts[index]} Do you want to know more?"
 
 
+def _track_more_prompt(question: str, answer: str, session) -> None:
+    if not answer.strip().endswith("Do you want to know more?"):
+        session.metadata.pop("pending_more", None)
+        return
+    if "intelligent robotic" in question.lower() or "intelligent robotics" in answer.lower():
+        session.metadata["pending_more"] = {"topic": "intelligent_robotics", "stage": 1}
+
+
+def _next_pending_more(session) -> str | None:
+    state = session.metadata.get("pending_more") or {}
+    if state.get("topic") != "intelligent_robotics":
+        return None
+
+    stage = int(state.get("stage") or 1)
+    if stage <= 1:
+        session.metadata["pending_more"] = {"topic": "intelligent_robotics", "stage": 2}
+        return (
+            "Intelligent Robotics covers robotics, AI, programming, electronics, control systems, and projects. "
+            "Do you want the study plan next?"
+        )
+
+    session.metadata.pop("pending_more", None)
+    answer = answer_course_question("Intelligent Robotics study plan")
+    return answer["answer"] if answer else None
+
+
 def _text_has_any(text: str, values: list[str]) -> bool:
     return any(value in text for value in values)
 
@@ -447,7 +473,10 @@ async def chat(req: ChatReq):
     session = SESSION_MANAGER.get_session(user_id)
     if MORE_INTENT_RE.match(question):
         next_part = _next_answer_part(session)
+        if not next_part:
+            next_part = _next_pending_more(session)
         if next_part:
+            await SESSION_MANAGER.add_conversation_pair(user_id, question, next_part)
             SESSION_MANAGER.add_to_history(user_id, "user", question)
             SESSION_MANAGER.add_to_history(user_id, "assistant", next_part)
             save_message(user_id, "assistant", next_part)
@@ -577,11 +606,14 @@ async def chat(req: ChatReq):
     if guarded_answer:
         memory_status = SESSION_MANAGER.get_memory_status(user_id)
         guarded_answer["answer"] = _with_memory_answer_parts(question, guarded_answer["answer"], session, memory_status)
+        _track_more_prompt(question, guarded_answer["answer"], session)
+        SESSION_MANAGER.update_session(user_id, {"metadata": session.metadata})
+        await SESSION_MANAGER.add_conversation_pair(user_id, question, guarded_answer["answer"])
         SESSION_MANAGER.add_to_history(user_id, "user", question)
         SESSION_MANAGER.add_to_history(user_id, "assistant", guarded_answer["answer"])
         save_message(user_id, "assistant", guarded_answer["answer"])
         return guarded_answer | {
-            "memory": memory_status,
+            "memory": SESSION_MANAGER.get_memory_status(user_id),
         }
     
     route = route_query(question, session)
