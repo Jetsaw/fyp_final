@@ -9,6 +9,8 @@ const qaPath = process.env.QA_PAIRS_PATH ?? defaultQaPath;
 const baseUrl = (process.env.QA_EVAL_BASE_URL ?? "http://127.0.0.1:8000").replace(/\/$/, "");
 const reportPath = path.join(__dirname, "..", "qa-pair-full-eval-report.json");
 const concurrency = Number(process.env.QA_EVAL_CONCURRENCY ?? 12);
+const runId = `qa_eval_${Date.now()}`;
+const maxContinuationTurns = Number(process.env.QA_EVAL_MAX_CONTINUATIONS ?? 4);
 
 function parseJsonl(text) {
   return text
@@ -40,14 +42,30 @@ function overlapScore(expected, actual) {
   return hits / expectedTokens.length;
 }
 
-async function ask(row) {
+async function askQuestion(question, userId) {
   const response = await fetch(`${baseUrl}/ask`, {
     method: "POST",
     headers: { "content-type": "application/json" },
-    body: JSON.stringify({ question: row.question, history: [] }),
+    body: JSON.stringify({ question, history: [], user_id: userId }),
   });
   const payload = await response.json().catch(() => ({}));
   return { status: response.status, payload };
+}
+
+async function ask(row, index) {
+  const userId = `${runId}_${index}`;
+  const turns = [];
+  let result = await askQuestion(row.question, userId);
+  turns.push(result);
+
+  for (let turn = 0; turn < maxContinuationTurns; turn += 1) {
+    const answer = String(result.payload.answer ?? "");
+    if (!answer.includes("Do you want to know more?")) break;
+    result = await askQuestion("more", userId);
+    turns.push(result);
+  }
+
+  return { ...turns[0], turns };
 }
 
 async function mapLimit(rows, limit, worker) {
@@ -75,8 +93,8 @@ console.log(`Concurrency: ${concurrency}`);
 const startedAt = Date.now();
 const results = await mapLimit(rows, concurrency, async (row, index) => {
   try {
-    const result = await ask(row);
-    const answer = result.payload.answer ?? "";
+    const result = await ask(row, index);
+    const answer = result.turns.map((turn) => turn.payload.answer ?? "").filter(Boolean).join(" ");
     const score = overlapScore(row.answer, answer);
     const usedRag = result.payload.used_rag === true || result.payload.usedRag === true;
     const route = result.payload.route ?? "";
@@ -99,6 +117,7 @@ const results = await mapLimit(rows, concurrency, async (row, index) => {
       expectedPreview: String(row.answer).replace(/\s+/g, " ").slice(0, 220),
       answerPreview: String(answer).replace(/\s+/g, " ").slice(0, 220),
       sources: result.payload.sources ?? [],
+      continuationTurns: result.turns.length - 1,
     };
   } catch (error) {
     return {
