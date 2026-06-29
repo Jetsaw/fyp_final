@@ -13,12 +13,14 @@ def test_overview_yes_uses_five_pair_memory(monkeypatch):
     first = asyncio.run(chat_module.chat(ChatReq(user_id="followup-test", message="tell me about the Intelligent Robotics")))
     second = asyncio.run(chat_module.chat(ChatReq(user_id="followup-test", message="yes")))
     third = asyncio.run(chat_module.chat(ChatReq(user_id="followup-test", message="yes")))
+    fourth = asyncio.run(chat_module.chat(ChatReq(user_id="followup-test", message="yes")))
 
     assert first["memory"]["pairs_count"] == 1
     assert second["route"] == "answer_part_continuation"
-    assert "covers robotics" in second["answer"]
+    assert "hands-on practical skills" in second["answer"]
     assert second["memory"]["pairs_count"] == 2
-    assert "Intelligent Robotics structure" in third["answer"]
+    assert "IR4.0" in third["answer"]
+    assert "covers robotics" in fourth["answer"]
 
 
 def test_byoc_advice_uses_five_pair_memory(monkeypatch):

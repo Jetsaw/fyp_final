@@ -214,6 +214,11 @@ def _split_long_answer(answer: str) -> list[str]:
 
     sentences = [sentence for sentence in re.split(r"(?<=[.!?])\s+", answer.strip()) if sentence]
     if len(sentences) < 3:
+        items = [item.strip() for item in answer.split(";") if item.strip()]
+        if len(items) >= 3:
+            size = max(1, (len(items) + 2) // 3)
+            return ["; ".join(items[index : index + size]) for index in range(0, len(items), size)]
+
         words = answer.split()
         size = max(1, (len(words) + 2) // 3)
         return [" ".join(words[index : index + size]) for index in range(0, len(words), size)]
@@ -227,13 +232,18 @@ def _with_memory_answer_parts(question: str, answer: str, session, memory_status
         session.metadata.pop("answer_parts", None)
         return answer
 
-    parts = _split_long_answer(answer)
+    more_prompt = "Do you want to know more?"
+    answer_body = answer.strip()
+    if answer_body.endswith(more_prompt):
+        answer_body = answer_body[: -len(more_prompt)].strip()
+
+    parts = _split_long_answer(answer_body)
     if len(parts) <= 1:
         session.metadata.pop("answer_parts", None)
         return answer
 
     session.metadata["answer_parts"] = {"parts": parts, "next_index": 1}
-    return f"{parts[0]} Do you want to know more?"
+    return f"{parts[0]} {more_prompt}"
 
 
 def _next_answer_part(session) -> str | None:
@@ -324,6 +334,8 @@ def _byoc_workload(question: str) -> str | None:
 
 
 def _is_byoc_overview_request(text: str) -> bool:
+    if re.search(r"\bbyoc[-\s]*[123]\b", text):
+        return False
     has_byoc = "byoc" in text or "elective" in text
     return has_byoc and _text_has_any(
         text,
@@ -343,6 +355,21 @@ def _is_byoc_advice_turn(question: str, session) -> bool:
     text = question.lower()
     pending = session.metadata.get("task_state", {}).get("pending_flow") == "byoc"
     has_byoc_preferences = bool((session.preferences.get("byoc") or {}).get("interests"))
+    mentions_byoc = "byoc" in text or "elective" in text
+    asks_fact = mentions_byoc and _text_has_any(text, BYOC_FACT_WORDS)
+    course_fact_turn = bool(re.search(r"\b[A-Z]{2,4}\d{3,4}(?:-[A-Z0-9]+)?\b", question, re.IGNORECASE)) or _text_has_any(
+        text,
+        [
+            "what should a student know from",
+            "what are the course learning outcomes",
+            "what topics are covered",
+            "what is assessment",
+            "what is the objective",
+            "what is this intelligent robotics",
+        ],
+    )
+    if course_fact_turn and not mentions_byoc:
+        return False
     pending_reply = pending and (
         bool(_byoc_interests(question))
         or bool(_byoc_intake(question))
@@ -351,16 +378,19 @@ def _is_byoc_advice_turn(question: str, session) -> bool:
         or _text_has_any(text, BYOC_PREFERENCE_REPLY_WORDS)
         or _wants_byoc_explanation(text)
         or _wants_byoc_choice_help(text)
-    )
+    ) and not asks_fact
     follows_byoc = has_byoc_preferences and _text_has_any(text, BYOC_FOLLOWUP_WORDS)
-    mentions_byoc = "byoc" in text or "elective" in text
-    asks_fact = mentions_byoc and _text_has_any(text, BYOC_FACT_WORDS)
-    return pending_reply or follows_byoc or _is_byoc_overview_request(text) or (mentions_byoc and not asks_fact)
+    direct_interests = _byoc_interests(question)
+    direct_preference_advice = (
+        len(direct_interests) >= 2
+        and _text_has_any(text, ["choose", "recommend", "should", "pick", "best", "advise", "advice"] + BYOC_FOLLOWUP_WORDS)
+    )
+    return pending_reply or follows_byoc or direct_preference_advice or _is_byoc_overview_request(text) or (mentions_byoc and not asks_fact)
 
 
 def _byoc_intro_answer() -> str:
     return (
-        "BYOC means Build Your Own Curriculum: you choose approved electives that fit your goal. "
+        "BYOC means Build Your Own Curriculum: students choose elective subjects from the listed BYOC options, subject to offering and availability. "
         "Do you want a quick explanation, or should I advise you step by step?"
     )
 
@@ -392,6 +422,17 @@ def _byoc_workload_prompt_answer() -> str:
 def _answer_byoc_advice(question: str, session) -> dict | None:
     if not _is_byoc_advice_turn(question, session):
         return None
+
+    text = question.lower()
+    if _is_byoc_overview_request(text) and not _wants_byoc_choice_help(text):
+        session.metadata.setdefault("task_state", {})["pending_flow"] = "byoc"
+        return {
+            "answer": _byoc_intro_answer(),
+            "route": "byoc_intro",
+            "used_rag": True,
+            "sources": ["programme_structure.jsonl", "master_qa_pairs.clean.jsonl"],
+            "confidence": 0.9,
+        }
 
     preferences = dict(session.preferences)
     byoc = dict(preferences.get("byoc") or {})
@@ -590,7 +631,8 @@ async def chat(req: ChatReq):
             "progression", "course structure", "study plan", "byoc",
             "elective", "project", "which one", "fits"
         ]
-        is_detailed_question = any(kw in question.lower() for kw in detailed_question_keywords)
+        question_like = re.match(r"^\s*(what|which|when|where|how|does|do|can|is|are|should|show|list)\b", question, re.IGNORECASE)
+        is_detailed_question = bool(question_like) or any(kw in question.lower() for kw in detailed_question_keywords)
         
         # Only return greeting if this is NOT a detailed question
         if not is_detailed_question:
