@@ -1,13 +1,13 @@
 {
   "baseUrl": "https://hive.ethosai.my/api",
-  "qaPath": "C:\\Users\\jeysa\\Desktop\\Final Years\\hive-backend\\data\\kb\\intelligent_robotics_qa_pairs.jsonl",
+  "qaPath": "C:\\Users\\jeysa\\Desktop\\fyp_final_clean\\hive-backend\\data\\kb\\intelligent_robotics_qa_pairs.jsonl",
   "total": 1421,
   "passed": 1421,
   "failed": 0,
   "averageScore": 1,
   "minScore": 0.9333,
-  "generatedAt": "2026-06-29T19:50:55.477Z",
-  "durationSeconds": 11.44,
+  "generatedAt": "2026-06-29T20:45:20.321Z",
+  "durationSeconds": 9.84,
   "failures": [],
   "results": [
     {

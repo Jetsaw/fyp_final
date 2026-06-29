@@ -555,13 +555,18 @@ def _answer_prerequisite_code(query: str, programme: dict[str, Any] | None) -> d
 
 
 def _answer_programme_course_presence(query: str, programme: dict[str, Any]) -> dict[str, Any] | None:
-    if not _has_any(query, ["need to take", "part of", "will i learn", "learn"]):
+    if not _has_any(query, ["need to take", "part of", "will i learn"]):
         return None
     course = _find_programme_course(query, programme)
     if course:
         prefix = f"{course['code']} " if course["code"] and _wants_course_codes(query) else ""
+        answer = (
+            f"Yes, you need to take {prefix}{course['course']}. It is listed in {course['year']} of the Intelligent Robotics structure."
+            if "need to take" in query
+            else f"Yes. {prefix}{course['course']} is listed in {course['year']} of the Intelligent Robotics structure."
+        )
         return _make_answer(
-            f"Yes. {prefix}{course['course']} is listed in {course['year']} of the Intelligent Robotics structure.",
+            answer,
             ["programme_structure.jsonl", programme["source"]],
             0.98,
             route="deterministic_course_presence",
@@ -638,6 +643,10 @@ def answer_course_question(question: str) -> dict[str, Any] | None:
 
     programme = _get_programme(query) or _default_programme()
     include_codes = _wants_course_codes(question)
+
+    presence_answer = _answer_programme_course_presence(query, programme) if programme and "need to take" in query else None
+    if presence_answer:
+        return presence_answer
 
     eval_answer = _answer_eval_qa(question)
     if eval_answer:

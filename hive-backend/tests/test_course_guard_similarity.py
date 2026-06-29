@@ -129,6 +129,8 @@ def test_need_to_take_course_presence_question():
     answer = answer_course_question("Do I need to take Basic Electronics in this robotics degree?")
 
     assert answer
+    assert answer["route"] == "deterministic_course_presence"
+    assert answer["answer"].startswith("Yes, you need to take Basic Electronics.")
     assert "Basic Electronics" in answer["answer"]
     assert "Year 1" in answer["answer"]
 
