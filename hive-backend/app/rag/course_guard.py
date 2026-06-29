@@ -9,14 +9,7 @@ from typing import Any
 COURSE_CODE_RE = re.compile(r"\b[A-Z]{2,4}\d{3,4}(?:-[A-Z0-9]+)?\b", re.IGNORECASE)
 SHORT_ROBOTICS_OVERVIEW = (
     "Bachelor of Science (Honours) in Intelligent Robotics is offered by the "
-    "Faculty of Artificial Intelligence and Engineering (FAIE). The programme page lists "
-    "registration (R/0788/6/00177) 01/31 and accreditation (MQA/SWA14238). "
-    "The Bachelor of Science (Honours) Intelligent Robotics is a 3-year programme that "
-    "strikes an exquisite balance between the fundamentals of engineering and hands-on "
-    "practical skills. This multidisciplinary programme combines electronics, robotics, "
-    "artificial intelligence, automation, and computer programming. It adopts a modern "
-    "learning approach with early exposure to real-world applications. Graduates will be "
-    "agile knowledge workers in the IR4.0 age and beyond, highly sought after by the industry. "
+    "Faculty of Artificial Intelligence and Engineering (FAIE). It is a 3-year programme. "
     "Do you want to know more?"
 )
 QA_STOPWORDS = {
@@ -83,19 +76,7 @@ COURSE_CATEGORIES = {
 def _normalize_question(question: str) -> str:
     return (
         question.lower()
-        .replace("intellengent", "intelligent")
-        .replace("inteligent", "intelligent")
         .replace("intelligent robotic", "intelligent robotics")
-        .replace("projet one", "project one")
-        .replace("projet 1", "project 1")
-        .replace("projet two", "project two")
-        .replace("projet 2", "project 2")
-        .replace("projet ii", "project ii")
-        .replace("projct one", "project one")
-        .replace("projct 1", "project 1")
-        .replace("projct two", "project two")
-        .replace("projct 2", "project 2")
-        .replace("projct ii", "project ii")
         .replace("project one", "project i")
         .replace("project 1", "project i")
         .replace("project two", "project ii")
@@ -124,7 +105,6 @@ def _qa_exact_key(question: str) -> str:
         "wich": "which",
         "hw": "how",
         "inn": "in",
-        "intellengent": "intelligent",
         "inteligent": "intelligent",
         "robotic": "robotics",
         "robotcs": "robotics",
@@ -160,9 +140,6 @@ def _is_academic_scope(question: str) -> bool:
         "academic",
         "advisor",
         "ai",
-        "apel",
-        "apply",
-        "automation",
         "arc6113",
         "arr6153",
         "byoc",
@@ -172,60 +149,27 @@ def _is_academic_scope(question: str) -> bool:
         "communications",
         "course",
         "credit",
-        "degree",
         "drone",
-        "drones",
         "elective",
-        "electronics",
-        "enquire",
         "engineering",
-        "entry",
         "faculty",
         "fyp",
-        "graduates",
-        "hands",
-        "hands-on",
-        "hardware",
         "intelligent",
-        "industry",
-        "intake",
-        "job",
-        "jobs",
-        "learning",
-        "manufacturing",
-        "machine",
         "mmd6123",
-        "math",
-        "maths",
-        "mathematics",
         "mmu",
         "mobile",
-        "brochure",
-        "coding",
-        "core",
         "prereq",
         "prerequisite",
-        "programming",
-        "practical",
         "program",
         "programme",
         "project",
-        "requirements",
         "registration",
-        "robotics",
-        "scholarship",
-        "sensor",
-        "sensors",
         "robot",
         "semester",
         "subject",
         "technical",
-        "take",
         "trimester",
-        "tour",
-        "vision",
         "wireless",
-        "whatsapp",
         "year",
     }
     if COURSE_CODE_RE.search(question):
@@ -248,20 +192,6 @@ def _asks_for_code_output(question: str) -> bool:
 def _load_programmes() -> list[dict[str, Any]]:
     knowledge_path = Path(__file__).resolve().parents[2] / "data" / "kb" / "course_knowledge.generated.json"
     with knowledge_path.open("r", encoding="utf-8") as file:
-        return json.load(file)
-
-
-@lru_cache(maxsize=1)
-def _load_source_facts() -> dict[str, Any]:
-    facts_path = Path(__file__).resolve().parents[2] / "data" / "kb" / "intelligent_robotics_source_facts.json"
-    with facts_path.open("r", encoding="utf-8") as file:
-        return json.load(file)
-
-
-@lru_cache(maxsize=1)
-def _load_prereq_rules() -> dict[str, Any]:
-    rules_path = Path(__file__).resolve().parents[2] / "data" / "kb" / "prereq_rules.json"
-    with rules_path.open("r", encoding="utf-8") as file:
         return json.load(file)
 
 
@@ -421,32 +351,6 @@ def _format_courses(term: dict[str, Any], include_codes: bool) -> str:
     return ", ".join(formatted)
 
 
-def _programme_courses(programme: dict[str, Any]) -> list[dict[str, str]]:
-    courses: list[dict[str, str]] = []
-    for term in programme.get("terms", []):
-        for index, course in enumerate(term.get("courses", [])):
-            code = term.get("courseCodes", [])[index] if index < len(term.get("courseCodes", [])) else ""
-            courses.append({"code": code, "course": course, "year": term["label"]})
-    return courses
-
-
-def _find_programme_course(query: str, programme: dict[str, Any]) -> dict[str, str] | None:
-    query_key = _qa_key(query)
-    query_tokens = _qa_tokens(query)
-    query_codes = {code.upper() for code in COURSE_CODE_RE.findall(query)}
-    best: tuple[float, dict[str, str]] | None = None
-    for row in sorted(_programme_courses(programme), key=lambda item: len(item["course"]), reverse=True):
-        course_key = _qa_key(row["course"])
-        course_tokens = _qa_tokens(row["course"])
-        if row["code"].upper() in query_codes or re.search(rf"(?:^| ){re.escape(course_key)}(?: |$)", query_key):
-            return row
-        if course_tokens:
-            score = len(query_tokens & course_tokens) / len(course_tokens)
-            if score >= 0.55 and (not best or score > best[0]):
-                best = (score, row)
-    return best[1] if best else None
-
-
 def _query_year(query: str) -> str | None:
     if _has_any(query, ["first sem", "first semester", "new join", "new student", "join the course", "start the course"]):
         return "year-1"
@@ -464,8 +368,7 @@ def _find_term(programme: dict[str, Any], term_id: str | None) -> dict[str, Any]
 
 
 def _category_key(query: str) -> str | None:
-    allows_short_category = bool(re.fullmatch(r"\s*[a-z ]+\s+[123]\s*", query))
-    if not allows_short_category and not _has_any(query, ["course", "courses", "subject", "subjects", "program", "programme"]):
+    if not _has_any(query, ["course", "courses", "subject", "subjects", "program", "programme"]):
         return None
     for key, data in COURSE_CATEGORIES.items():
         if _has_any(query, data["aliases"]):
@@ -491,9 +394,6 @@ def _answer_category_question(query: str, programme: dict[str, Any]) -> dict[str
 
     wants_full = _has_any(query, ["all", "full", "complete", "list all"])
     term_id = _query_year(query)
-    if not term_id:
-        match = re.fullmatch(r"\s*[a-z ]+\s+([123])\s*", query)
-        term_id = f"year-{match.group(1)}" if match else None
     if not term_id and not wants_full:
         return _make_answer(
             f"Which year do you want for {category} courses: Year 1, Year 2, Year 3, or the full list?",
@@ -527,100 +427,6 @@ def _answer_starter_courses(query: str, programme: dict[str, Any], include_codes
     )
 
 
-def _answer_prerequisite_code(query: str, programme: dict[str, Any] | None) -> dict[str, Any] | None:
-    if not _has_any(query, ["prereq", "prerequisite", "pre requisite", "pre-requisite"]):
-        return None
-    codes = [code.upper() for code in COURSE_CODE_RE.findall(query)]
-    course = _find_programme_course(query, programme) if programme else None
-    if course and course["code"]:
-        codes.insert(0, course["code"].upper())
-    if not codes:
-        return None
-    code = codes[0]
-    rules = _load_prereq_rules()
-    if code in rules:
-        title = rules[code].get("title", code)
-        prereqs = rules[code].get("prerequisites") or ["No prerequisite is specified in the extracted rules"]
-        return _make_answer(
-            f"{code} {title} prerequisite: {', '.join(prereqs)}.",
-            ["prereq_rules.json"],
-            route="deterministic_course_rules",
-        )
-    return _make_answer(
-        f"I do not have an extracted Intelligent Robotics prerequisite rule for {code}. Please check FAIE staff or the official subject outline.",
-        ["prereq_rules.json"],
-        0.8,
-        route="deterministic_course_rules",
-    )
-
-
-def _answer_programme_course_presence(query: str, programme: dict[str, Any]) -> dict[str, Any] | None:
-    if not _has_any(query, ["need to take", "part of", "will i learn", "learn"]):
-        return None
-    course = _find_programme_course(query, programme)
-    if course:
-        prefix = f"{course['code']} " if course["code"] and _wants_course_codes(query) else ""
-        return _make_answer(
-            f"Yes. {prefix}{course['course']} is listed in {course['year']} of the Intelligent Robotics structure.",
-            ["programme_structure.jsonl", programme["source"]],
-            0.98,
-            route="deterministic_course_presence",
-        )
-    category = _category_key(f"{query} course")
-    if category:
-        courses = _category_courses(programme, category)
-        if courses:
-            return _make_answer(
-                f"Yes. {category} appears in the programme through courses such as {', '.join(courses[:5])}.",
-                ["programme_structure.jsonl", programme["source"]],
-                0.95,
-                route="deterministic_course_presence",
-            )
-    return None
-
-
-def _answer_programme_links(query: str) -> dict[str, Any] | None:
-    facts = _load_source_facts()
-    links = facts.get("page_action_links", []) + facts.get("page_top_links", []) + facts.get("page_support_links", [])
-    for link in links:
-        label = str(link.get("label", ""))
-        if label and _has_any(query, [label.lower()]):
-            return _make_answer(
-                f"{label.title()}: {link['url']}",
-                ["intelligent_robotics_source_facts.json"],
-                0.98,
-                route="deterministic_programme_link",
-            )
-    if "apel" in query:
-        return _make_answer(
-            f"APEL A information: {facts['apel_a_url']}",
-            ["intelligent_robotics_source_facts.json"],
-            0.98,
-            route="deterministic_programme_link",
-        )
-    return None
-
-
-def _answer_career_or_industry(query: str) -> dict[str, Any] | None:
-    facts = _load_source_facts()
-    if _has_any(query, ["robotics engineer", "career", "job"]):
-        careers = ", ".join(facts.get("career_prospects", [])[:5])
-        return _make_answer(
-            f"Common robotics paths from this programme include {careers}.",
-            ["intelligent_robotics_source_facts.json"],
-            0.95,
-            route="deterministic_career_facts",
-        )
-    if _has_any(query, ["industry 4.0", "ir4.0"]):
-        return _make_answer(
-            "Yes. The MMU description says graduates are prepared as agile knowledge workers for the IR4.0 age and beyond.",
-            ["intelligent_robotics_source_facts.json"],
-            0.95,
-            route="deterministic_career_facts",
-        )
-    return None
-
-
 def _byoc_slot(query: str) -> str | None:
     match = re.search(r"\b(?:elective\s*([123])\s*byoc|byoc[-\s]*([123]))\b", query, re.IGNORECASE)
     return (match.group(1) or match.group(2)) if match else None
@@ -638,23 +444,6 @@ def answer_course_question(question: str) -> dict[str, Any] | None:
 
     programme = _get_programme(query) or _default_programme()
     include_codes = _wants_course_codes(question)
-
-    eval_answer = _answer_eval_qa(question)
-    if eval_answer:
-        return eval_answer
-
-    link_answer = _answer_programme_links(query)
-    if link_answer:
-        return link_answer
-
-    career_answer = _answer_career_or_industry(query)
-    if career_answer:
-        return career_answer
-
-    prereq_answer = _answer_prerequisite_code(query, programme)
-    if prereq_answer:
-        return prereq_answer
-
     starter_answer = _answer_starter_courses(query, programme, include_codes) if programme else None
     if starter_answer:
         return starter_answer
@@ -663,9 +452,9 @@ def answer_course_question(question: str) -> dict[str, Any] | None:
     if category_answer:
         return category_answer
 
-    presence_answer = _answer_programme_course_presence(query, programme) if programme else None
-    if presence_answer:
-        return presence_answer
+    eval_answer = _answer_eval_qa(question)
+    if eval_answer:
+        return eval_answer
 
     slot = _byoc_slot(query)
 
@@ -799,9 +588,7 @@ def answer_course_question(question: str) -> dict[str, Any] | None:
             0.98,
         )
 
-    if _has_any(query, ["programme name", "overview", "intake", "about"]) or (
-        _has_any(query, ["intelligent robotics"]) and len(_qa_tokens(query)) <= 3
-    ):
+    if _has_any(query, ["programme name", "overview", "intake", "about"]):
         return _make_answer(
             SHORT_ROBOTICS_OVERVIEW,
             ["programme_structure.jsonl", programme["source"]],

@@ -91,38 +91,3 @@ def test_byoc_faq_question_escapes_preference_memory():
     assert _answer_byoc_advice("How do I check if I am eligible for BYOC?", session) is None
     assert _answer_byoc_advice("What should I compare before choosing this course?", session) is None
     assert _answer_byoc_advice("What should I ask the faculty before selecting BYOC?", session) is None
-
-
-def test_direct_preference_question_gets_byoc_advice():
-    session = SessionState(session_id="byoc-test")
-
-    answer = _answer_byoc_advice(
-        "After I like mobile apps and wireless networks, which one fits robotics projects best?",
-        session,
-    )
-
-    assert answer
-    assert answer["route"] == "byoc_memory_recommendation"
-    assert "Introductory Mobile Application Development" in answer["answer"]
-    assert "Radio Network Planning Towards 5G" in answer["answer"]
-
-
-def test_byoc_memory_does_not_capture_course_fact_questions():
-    session = SessionState(session_id="byoc-test")
-    _answer_byoc_advice("After I like mobile apps and wireless networks, which one fits robotics projects best?", session)
-
-    answer = _answer_byoc_advice("What should a student know from ARC6113 Computer and Programming?", session)
-
-    assert answer is None
-
-
-def test_byoc_slot_fact_escapes_direct_advice():
-    session = SessionState(session_id="byoc-test")
-
-    assert _answer_byoc_advice("What is BYOC-1 (Elective 1 BYOC) about?", session) is None
-
-
-def test_single_interest_programme_fit_escapes_byoc_advice():
-    session = SessionState(session_id="byoc-test")
-
-    assert _answer_byoc_advice("Should a student choose this if they like coding?", session) is None

@@ -48,21 +48,22 @@ def test_intelligent_robotics_overview_is_short_and_invites_followup():
     answer = answer_course_question("tell me about Bachelor of Science Intelligent Robotics")
 
     assert answer
-    assert "Faculty of Artificial Intelligence and Engineering (FAIE)" in answer["answer"]
-    assert "R/0788/6/00177" in answer["answer"]
-    assert "MQA/SWA14238" in answer["answer"]
-    assert "IR4.0" in answer["answer"]
-    assert answer["answer"].endswith("Do you want to know more?")
+    assert answer["answer"] == (
+        "Bachelor of Science (Honours) in Intelligent Robotics is offered by the "
+        "Faculty of Artificial Intelligence and Engineering (FAIE). It is a 3-year programme. "
+        "Do you want to know more?"
+    )
 
 
 def test_singular_intelligent_robotic_overview_is_short():
     answer = answer_course_question("tell me about intelligent robotic")
 
     assert answer
-    assert "Bachelor of Science (Honours) in Intelligent Robotics" in answer["answer"]
-    assert "computer programming" in answer["answer"]
-    assert "real-world applications" in answer["answer"]
-    assert answer["answer"].endswith("Do you want to know more?")
+    assert answer["answer"] == (
+        "Bachelor of Science (Honours) in Intelligent Robotics is offered by the "
+        "Faculty of Artificial Intelligence and Engineering (FAIE). It is a 3-year programme. "
+        "Do you want to know more?"
+    )
 
 
 def test_unknown_question_uses_safe_staff_fallback():
@@ -113,44 +114,3 @@ def test_new_join_question_uses_year_one_structure():
     assert "Source is by year, not semester" in answer["answer"]
     assert "Technical Calculus" in answer["answer"]
     assert "Computer and Programming" in answer["answer"]
-
-
-def test_project_two_typo_uses_project_ii_prerequisite_rule():
-    answer = answer_course_question("What is prereq for projet 2?")
-
-    assert answer
-    assert answer["route"] == "deterministic_course_rules"
-    assert "Project II" in answer["answer"]
-    assert "Project I" in answer["answer"]
-    assert "completed 60 credit hours" in answer["answer"].lower()
-
-
-def test_need_to_take_course_presence_question():
-    answer = answer_course_question("Do I need to take Basic Electronics in this robotics degree?")
-
-    assert answer
-    assert "Basic Electronics" in answer["answer"]
-    assert "Year 1" in answer["answer"]
-
-
-def test_programme_support_link_question():
-    answer = answer_course_question("Where do I go for Scholarship?")
-
-    assert answer
-    assert "https://www.mmu.edu.my/financial-assistance/" in answer["answer"]
-
-
-def test_industry_four_question_uses_source_facts():
-    answer = answer_course_question("Does this degree prepare me for Industry 4.0 work?")
-
-    assert answer
-    assert "Industry 4.0" in answer["answer"] or "IR4.0" in answer["answer"]
-
-
-def test_general_prerequisite_code_rule():
-    answer = answer_course_question("What is the pre-requisite for ARA6123?")
-
-    assert answer
-    assert answer["route"] == "deterministic_course_rules"
-    assert "ARA6123" in answer["answer"]
-    assert "ARC6113" in answer["answer"]
